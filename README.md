@@ -16,7 +16,7 @@ Commit naming convention for better practice.
 `FE:changes`,
 `FE:feat:changes`,
 `FE:fix:changes`,
-`FE:style:changes
+`FE:style:changes`
 
 `BE:changes`,
 `BE:feat:changes`,
