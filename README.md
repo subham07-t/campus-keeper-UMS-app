@@ -8,7 +8,8 @@
 
 ## Branch naming convention for better practice.
 
-`FE/feat/branch-name`,`FE/fix/branch-name`,`FE/test/branch-name`,
+`FE/feat/branch-name`,`FE/fix/branch-name`,`FE/test/branch-name`
+
 `BE/feat/branch-name`,`BE/fix/branch-name`,`BE/test/branch-name`
 
 ## Commit naming convention for better practice.
