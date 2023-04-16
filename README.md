@@ -2,9 +2,9 @@
  
  ## When should we create branches?
  
- Working on a new feature
- Fixing a bug
- Experimenting with changes
+ - Working on a new feature
+ - Fixing a bug
+ - Experimenting with changes
 
 ## Branch naming convention for better practice.
 
