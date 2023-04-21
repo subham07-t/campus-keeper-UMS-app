@@ -1,68 +1,55 @@
 const User = require("../models/User");
-const CryptoJS = require("crypto-js");
-const jwt = require("jsonwebtoken");
+const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcrypt");
+const { generateFromEmail } = require("unique-username-generator");
+// const CryptoJS = require("crypto-js");
+// const jwt = require("jsonwebtoken");
 
-const register = async (req, res) => {
-  const UserName = req.body.username;
-  const Email = req.body.email;
-  const Password = req.body.password;
+const register = asyncHandler(async (req, res) => {
+  const { email, password, roles } = req.body;
 
-  const newUser = new User({
-    username: UserName,
-    email: Email,
-    password: CryptoJS.AES.encrypt(
-      Password,
-      process.env.PASSWORD_SECRET
-    ).toString(),
-  });
-
-  try {
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
-  } catch (err) {
-    res.status(500).json(err);
+  if (!email || !password || !Array.isArray(roles) || !roles.length) {
+    return res.status(400).json({ message: "All fields are required" });
   }
-};
 
-const login = async (req, res) => {
-  const UserName = req.body.username;
-  const Password = req.body.password;
+  const username = generateFromEmail(email, 3);
 
-  try {
-    const user = await User.findOne({
-      username: UserName,
-    });
+  const isEmailExist = await User.findOne({ email }).lean().exec();
+  if (isEmailExist) {
+    return res.status(409).json({ message: "Email already exist" });
+  }
 
-    if (!user) {
-      res.status(401).json("Username doesn't exist");
+  const hashedPwd = await bcrypt.hash(password, 10);
+
+  const userObject = { username, email, password: hashedPwd, roles };
+  const newUser = await User.create(userObject);
+
+  if (newUser) {
+    //created
+    res.status(201).json({ message: `New user ${email} created` });
+  } else {
+    res.status(400).json({ message: "Invalid user data received" });
+  }
+});
+
+const login = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email }).lean().exec();
+
+  if (!user) {
+    res.status(401).json("User not found");
+  } else {
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (isMatch) {
+      const username = user.username;
+      res.status(200).json({ msg: "success", username });
     } else {
-      const { password, ...others } = user._doc;
-
-      const hashedPassword = CryptoJS.AES.decrypt(
-        password,
-        process.env.PASSWORD_SECRET
-      );
-      const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-      const inputPassword = Password;
-
-      if (originalPassword != inputPassword) {
-        res.status(401).json("Wrong Password");
-      } else {
-        const accessToken = jwt.sign(
-          {
-            id: user._id,
-            isAdmin: user.isAdmin,
-          },
-          process.env.JWT_SECRET,
-          { expiresIn: process.env.JWT_TOKEN_EXPIRES_IN }
-        );
-        res.status(200).json({ ...others, accessToken });
-      }
+      res.status(401).json("Wrong Credentials");
     }
-  } catch (error) {
-    res.status(500).json(error);
   }
-};
+});
 
 module.exports = {
   register,
