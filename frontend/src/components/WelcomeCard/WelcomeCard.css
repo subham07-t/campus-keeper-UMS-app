@@ -1,0 +1,20 @@
+.welcome__div{
+    background-color: var(--theme-color);
+    color: var(--color-white);
+    width: 48%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome__heading{
+    color: var(--light-blue);
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.welcome__para{
+    font-size: 50px;
+    font-weight: 700;
+}
