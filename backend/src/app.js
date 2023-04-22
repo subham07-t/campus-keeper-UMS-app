@@ -14,10 +14,12 @@ connectDB(mongoDbUrl)
 
 // routes define
 const authRoute = require("./routes/authRoute");
+const userRoute = require("./routes/userRoute");
 
 //middleware functions
 app.use(express.json());
 app.use("/auth", authRoute);
+app.use("/user", userRoute);
 
 // server listening
 app.listen(port, () => {
