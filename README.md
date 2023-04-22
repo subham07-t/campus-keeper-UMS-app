@@ -1,10 +1,10 @@
 ﻿# campus-keeper-UMS-app
- 
- ## When should we create branches?
- 
- - Working on a new feature
- - Fixing a bug
- - Experimenting with changes
+
+## When should we create branches?
+
+- Working on a new feature
+- Fixing a bug
+- Experimenting with changes
 
 ## Branch naming convention for better practice.
 
@@ -22,3 +22,7 @@
 `BE:changes`,
 `BE:feat:changes`,
 `BE:fix:changes`,
+
+### For read .md file in your vs code.
+
+`ctrl+shift+v`
