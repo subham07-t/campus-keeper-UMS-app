@@ -12,8 +12,12 @@ connectDB(mongoDbUrl)
   .then(() => console.log("DB connect successfully"))
   .catch((error) => console.log(error));
 
+// routes define
+const authRoute = require("./routes/authRoute");
+
 //middleware functions
 app.use(express.json());
+app.use("/auth", authRoute);
 
 // server listening
 app.listen(port, () => {
