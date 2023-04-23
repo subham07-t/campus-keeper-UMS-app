@@ -1,4 +1,4 @@
-.welcome__div{
+/* .welcome__div{
     background-color: var(--theme-color);
     color: var(--color-white);
     width: 48%;
@@ -6,15 +6,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
+.welcome__div {
+    display: inline-block;
+    width: 49%;
+    height: 100vh;
+}
+.welcome_content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: justify;
+    background-color: var(--theme-color);
+    padding: 230px 20px;
+    border-radius: 23px;
+}
 .welcome__heading{
     color: var(--light-blue);
     font-size: 50px;
     font-weight: 700;
 }
 
-.welcome__para{
+.welcome__para {
     font-size: 50px;
     font-weight: 700;
+    color: var(--color-white);
 }

@@ -1,28 +1,36 @@
-.login__card {
-    /* background-color: var(--theme-color); */
+/* .login__card {
     color: var(--color-white);
     width: 48%;
     border-radius: 10px;
-    /* border: 1px solid var(--light-blue); */
     padding: 70px;
+} */
+.login__card {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+    height: 100vh;
+}
+
+.login_card_content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-54%);
 }
 
 .login__heading {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 5px;
-    margin-top: 40px;
+    color: var(--color-white);
+    margin-bottom: 20px;
+    margin-left: 10%;
 }
-
-.input__div{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
+.input__div {
+    width: 100%;
+    text-align: center;
+    color: var(--color-white);
+    margin-left: 6%;
 }
-
 .input__field{
     width: 70%;
     height: 40px;
@@ -34,6 +42,7 @@
     font-weight: bold;
     color: var(--color-white);
     letter-spacing: 0.9px;
+    margin-bottom: 20px;
 }
 
 input::placeholder {
@@ -64,4 +73,7 @@ input::placeholder {
     cursor: pointer;
     opacity: 0.9;
     transition: 0.3s ease-out;
+}
+p.forgot__pass-text {
+    margin-bottom: 20px;
 }
