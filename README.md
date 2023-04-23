@@ -1,4 +1,25 @@
 ﻿# campus-keeper-UMS-app
+ 
+ ### ✨ [Demo](https://campus-keeper-frontend.vercel.app/)
+
+
+## Run Locally
+
+Clone the project
+
+```sh
+  https://github.com/subham07-t/campus-keeper-UMS-app.git
+```
+
+Go to the project directory
+
+```sh
+  cd campus-keeper-UMS-app
+```
+
+Install dependencies
+
+Start the Project on browser
 
 ## When should we create branches?
 
