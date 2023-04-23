@@ -24,3 +24,6 @@
   font-family: var(--font-alt);
   /* background-color: var(--bg-color); */
 }
+body{
+  background-color: var(--bg-color);
+}

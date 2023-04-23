@@ -5,9 +5,11 @@ import LoginCard from "../../components/LoginCard";
 
 const Login = () => {
   return (
-    <div className="main__div">
+    <div className="container">
+      <div className="main__div">
       <WelcomeCard />
       <LoginCard />
+      </div>
     </div>
   );
 };

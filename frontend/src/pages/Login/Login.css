@@ -1,7 +1,18 @@
-.main__div{
+/* .main__div{
     background-color: var(--bg-color);
     height: 100vh;
     display: flex;
     justify-content: space-around;
     padding: 20px;
+} */
+
+.container {
+    width: 100%;
+    background-color: var(--bg-color);
 }
+.main__div {
+    width: 1370px;
+    margin: auto;
+    display: table;
+}
+
