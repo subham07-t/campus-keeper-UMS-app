@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 // .env file configuration
 require("dotenv").config();
@@ -17,6 +18,7 @@ const authRoute = require("./routes/authRoute");
 const userRoute = require("./routes/userRoute");
 
 //middleware functions
+app.use(cors());
 app.use(express.json());
 app.use("/auth", authRoute);
 app.use("/user", userRoute);
