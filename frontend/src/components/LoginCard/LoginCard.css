@@ -22,7 +22,7 @@
     text-transform: uppercase;
     letter-spacing: 5px;
     color: var(--color-white);
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     margin-left: 10%;
 }
 .input__div {
@@ -42,7 +42,7 @@
     font-weight: bold;
     color: var(--color-white);
     letter-spacing: 0.9px;
-    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 input::placeholder {
@@ -76,4 +76,11 @@ input::placeholder {
 }
 p.forgot__pass-text {
     margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.error_msg{
+    color: var(--color-error);
+    font-size: 12px;
+    margin-top: 3px;
 }
