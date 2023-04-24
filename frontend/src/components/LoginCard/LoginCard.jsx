@@ -1,5 +1,5 @@
 import "./LoginCard.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const LoginCard = () => {
@@ -8,11 +8,6 @@ const LoginCard = () => {
   const [password, setPassword] = useState("");
   const [errUserName, setErrUserName] = useState("");
   const [errPassword, setErrPassword] = useState("");
-
-  // const [userCredentials, setUserCredentials] = useState({
-  //   email: "",
-  //   password: "",
-  // });
 
   const navigateToDashboard = async () => {
     if (userName === "") {
@@ -33,8 +28,6 @@ const LoginCard = () => {
     }
     setErrPassword("");
 
-    // setUserCredentials({ userName, password });
-
     const userCredentials = {
       email: userName,
       password: password,
@@ -42,30 +35,19 @@ const LoginCard = () => {
 
     const response = await fetch("http://localhost:8080/auth/login", {
       method: "POST",
-      // headers: {
-      //   // "Content-Type": "application/json",
-      //   // Accept: "application/json",
-      // },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(userCredentials),
     });
-    console.log(response);
 
     const result = await response.json();
-    // localStorage.setItem("user-info", JSON.stringify(result));
-    console.log("result -> ", result);
 
-    // navigate("./dashboard");
-    if (result) {
-      console.log(result);
+    if (result.msg === "success") {
+      localStorage.setItem("user-info", JSON.stringify(result.username));
+      navigate("./dashboard");
     }
-    console.log(JSON.stringify(userCredentials));
   };
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("user-info")) {
-  //     // navigate("./dashboard");
-  //   }
-  // }, []);
 
   return (
     <div className="login__card">
