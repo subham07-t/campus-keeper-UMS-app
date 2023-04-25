@@ -1,8 +1,9 @@
+import Header from "../../components/Header";
 const Dashboard = () => {
   return (
-    <div>
-      <h1>Welcome To DashBoard.......</h1>
-    </div>
+    <>
+      <Header />
+    </>
   );
 };
 
