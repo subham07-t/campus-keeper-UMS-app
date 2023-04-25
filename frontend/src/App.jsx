@@ -1,11 +1,14 @@
 import React from "react";
 import Login from "./pages/Login";
 import "./App.css";
+import  Header  from "./components/Header";
 
 const App = () => {
   return (
     <div>
-      <Login />
+      
+      <Header/>
+      {/* <Login /> */}
     </div>
   );
 };
