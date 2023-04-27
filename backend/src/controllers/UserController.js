@@ -112,3 +112,8 @@ module.exports = {
   updateUser,
   deleteUser,
 };
+
+// GET /api/users - Get all users (admin only)
+// GET /api/users/:id - Get a specific user by ID
+// PUT /api/users/:id - Update a specific user by ID
+// DELETE /api/users/:id - Delete a specific user by ID
