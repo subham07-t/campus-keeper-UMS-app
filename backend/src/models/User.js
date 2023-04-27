@@ -2,19 +2,24 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-    username: { type: String, unique: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
     isAdmin: {
       type: Boolean,
       default: false,
     },
-    roles: [
-      {
-        type: String,
-        default: "Student",
-      },
-    ],
+    role: {
+      type: String,
+      enum: ["student", "faculty", "admin"],
+      default: "student",
+    },
+    roleDetails: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      refPath: "role",
+    },
+    authDetails: { type: mongoose.Schema.Types.ObjectId, ref: "AuthDetail" },
   },
   { timestamps: true }
 );
