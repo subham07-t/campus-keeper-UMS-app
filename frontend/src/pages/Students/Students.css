@@ -1,4 +1,46 @@
 .student__main-div{
-    background-color: yellow;
+    background-color: var(--theme-color);
     width: 80%;
+    padding: 20px;
+}
+
+.create__student-h1{
+    text-align: center;
+    color: var(--color-white);
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+}
+
+.sub__div-one{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.sub__div-two{
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.sub__div-two .MuiTextField-root{
+    width: 100%;
+}
+
+/* Material UI Text-Input Styles */
+
+.sub__div-one .MuiInputLabel-root {
+    color: var(--color-btn);
+}
+
+.sub__div-one .MuiFilledInput-input {
+    color: white;
+}
+
+.sub__div-one .MuiTextField-root {
+    width: 30%;
+}
+
+.sub__div-one .MuiFormControl-root{
+    width: 30%;
 }

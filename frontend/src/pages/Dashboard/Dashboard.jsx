@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
         <Sidebar />
         <Students />
       </div>
