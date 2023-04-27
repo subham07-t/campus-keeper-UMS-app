@@ -14,8 +14,8 @@ connectDB(mongoDbUrl)
   .catch((error) => console.log(error));
 
 // routes define
-const authRoute = require("./routes/authRoute");
-const userRoute = require("./routes/userRoute");
+const authRoute = require("./routes/authRoutes");
+const userRoute = require("./routes/userRoutes");
 
 //middleware functions
 app.use(cors());
