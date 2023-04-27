@@ -27,12 +27,7 @@ const DegreeDetailSchema = new Schema(
         },
       },
     ],
-    prerequisites: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Course",
-      },
-    ],
+    prerequisites: [{ type: String }],
     faculty: [
       {
         type: Schema.Types.ObjectId,
