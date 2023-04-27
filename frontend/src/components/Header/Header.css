@@ -5,6 +5,7 @@
     height: 80px;
     width: 100%;
     color: var(--color-white);
+    margin-bottom: 10px;
 }
 .header_container {
     width: 90%;
