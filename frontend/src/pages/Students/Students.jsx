@@ -5,6 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Button from "@mui/material/Button";
 
 const Students = () => {
   const [age, setAge] = React.useState("");
@@ -70,10 +71,20 @@ const Students = () => {
           id="filled-multiline-static"
           label="Address"
           multiline
-          rows={4}
-          defaultValue="Default Value111"
+          rows={2}
           variant="filled"
         />
+        <TextField
+          id="filled-basic"
+          // label="Email"
+          variant="filled"
+          type="file"
+        />
+      </div>
+      <div className="sub__div-three">
+        <Button variant="contained" color="success">
+          SUBMIT
+        </Button>
       </div>
     </div>
   );

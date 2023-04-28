@@ -19,22 +19,32 @@
 }
 
 .sub__div-two{
-    padding-left: 11px;
-    padding-right: 11px;
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.sub__div-two .MuiTextField-root{
-    width: 100%;
+.sub__div-three{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
 }
+
+
 
 /* Material UI Text-Input Styles */
+
+.sub__div-two .MuiTextField-root{
+    width: 45%;  
+}
 
 .sub__div-one .MuiInputLabel-root {
     color: var(--color-btn);
 }
 
 .sub__div-one .MuiFilledInput-input {
-    color: white;
+    color: var(--color-white);
 }
 
 .sub__div-one .MuiTextField-root {
@@ -43,4 +53,25 @@
 
 .sub__div-one .MuiFormControl-root{
     width: 30%;
+}
+
+.sub__div-two .MuiInputLabel-root{
+    color: var(--color-btn);
+}
+
+.sub__div-two .MuiFilledInput-input{
+    color: var(--color-white);
+}
+
+.sub__div-two .MuiFilledInput-root{
+    height: 12vh;
+}
+
+.sub__div-two .MuiFilledInput-input{
+    color: var(--color-btn);
+}
+
+.sub__div-three .MuiButton-root{
+    background-color: #03C03C;
+    width: 140px;
 }
