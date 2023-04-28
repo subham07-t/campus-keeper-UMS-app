@@ -1,21 +1,16 @@
 const express = require("express");
 const path = require("path");
-const app = express();
 const cors = require("cors");
+const config = require("../config/config");
+const connectDB = require("../config/dbConn");
 
-// .env file configuration
-require("dotenv").config();
-const port = process.env.PORT || 5000;
-const mongoDbUrl = process.env.MONGO_DB_URL;
-
+const app = express();
+console.log(config);
 // DB connection
-const connectDB = require("./db/connect");
-connectDB(mongoDbUrl)
-  .then(() => console.log("DB connect successfully"))
-  .catch((error) => console.log(error));
+connectDB(config.mongoDbUrl);
 
 //middleware functions
-app.use(cors());
+app.use(cors(config.corsOptions));
 app.use(express.json());
 app.use("/", express.static(path.join(__dirname, "..", "/public")));
 
@@ -38,8 +33,7 @@ app.all("*", (req, res) => {
     res.type("txt").send("404 Not Found");
   }
 });
-
 // server listening
-app.listen(port, () => {
-  console.log(`server is running on port ${port}`);
+app.listen(config.port, () => {
+  console.log(`server is running on port ${config.port}`);
 });
