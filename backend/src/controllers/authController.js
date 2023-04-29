@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const { generateFromEmail } = require("unique-username-generator");
 // const CryptoJS = require("crypto-js");
 // const jwt = require("jsonwebtoken");
