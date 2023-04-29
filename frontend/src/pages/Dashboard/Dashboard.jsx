@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import Faculties from "../Faculties";
@@ -9,9 +10,10 @@ const Dashboard = () => {
       <Header />
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <Sidebar />
+        <Outlet />
         {/* <Students /> */}
-        {/* <Faculties /> */}
-        <Profile />
+        {/* <Faculties />
+        <Profile /> */}
       </div>
     </>
   );
