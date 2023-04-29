@@ -19,7 +19,7 @@ const homeRoute = require("./routes/home");
 const authRoute = require("./routes/authRoutes");
 const userRoute = require("./routes/userRoutes");
 app.use("/", homeRoute);
-app.use("/auth", authRoute);
+// app.use("/auth", authRoute);
 app.use("/user", userRoute);
 
 // Handle 404 errors
