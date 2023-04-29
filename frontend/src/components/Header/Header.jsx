@@ -36,13 +36,10 @@ const Header = () => {
               <div className="header_items three">
                   <div className='header_other_wrapper'>
 
-                    <div className='header_btn_div'>
-                        <a href="#"> <FaPlus className='add_icons_color'/> Create New Project</a>
-                    </div>
-
+                
                     <div className='icons_group_div'>
                       <div className='icons_wrappers'>
-                        <a href="#"><IoAppsSharp className='other_icons'/></a>
+                       
                         <a href="#"><FaEnvelope className='other_icons'/></a>
                         <a href="#"><IoNotifications className='other_icons'/></a>
                       </div>

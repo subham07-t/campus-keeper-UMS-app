@@ -6,7 +6,7 @@
 } */
 .login__card {
     display: inline-block;
-    width: 49%;
+    width: 50%;
     vertical-align: top;
     height: 100vh;
 }
@@ -83,4 +83,7 @@ p.forgot__pass-text {
     color: var(--color-error);
     font-size: 12px;
     margin-top: 3px;
+}
+.inputdiv_sub1 , .inputdiv_sub2{
+    height: 94px;
 }
