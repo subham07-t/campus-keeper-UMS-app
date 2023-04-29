@@ -11,49 +11,44 @@ const LoginCard = () => {
   const [errCredentials, setErrCredentials] = useState("");
 
   const navigateToDashboard = async () => {
-    if (userName === "") {
-      setErrUserName("Please Enter Your Email...");
-      return;
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(userName)) {
-      setErrUserName("Please Enter Valid Email...");
-      return;
-    }
-    setErrUserName("");
+    // if (userName === "") {
+    //   setErrUserName("Please Enter Your Email...");
+    //   return;
+    // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(userName)) {
+    //   setErrUserName("Please Enter Valid Email...");
+    //   return;
+    // }
+    // setErrUserName("");
+    // if (password === "") {
+    //   setErrPassword("Please Enter Your Password...");
+    //   return;
+    // } else if (password < 3) {
+    //   setErrPassword("Password Must Be Greater Than 3 Characters...");
+    //   return;
+    // }
+    // setErrPassword("");
+    // const userCredentials = {
+    //   email: userName,
+    //   password: password,
+    // };
+    // const response = await fetch("http://localhost:8080/auth/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(userCredentials),
+    // });
+    // const result = await response.json();
+    // if (result === "User not found") {
+    //   setErrCredentials("Wrong Credentials");
+    // }
+    // if (result.msg === "success") {
+    //   localStorage.setItem("user-info", JSON.stringify(result.username));
+    //   navigate("./dashboard");
+    // }
+    // console.log(result);
 
-    if (password === "") {
-      setErrPassword("Please Enter Your Password...");
-      return;
-    } else if (password < 3) {
-      setErrPassword("Password Must Be Greater Than 3 Characters...");
-      return;
-    }
-    setErrPassword("");
-
-    const userCredentials = {
-      email: userName,
-      password: password,
-    };
-
-    const response = await fetch("http://localhost:8080/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userCredentials),
-    });
-
-    const result = await response.json();
-
-    if (result === "User not found") {
-      setErrCredentials("Wrong Credentials");
-    }
-
-    if (result.msg === "success") {
-      localStorage.setItem("user-info", JSON.stringify(result.username));
-      navigate("./dashboard");
-    }
-
-    console.log(result);
+    navigate("./dashboard");
   };
 
   return (
