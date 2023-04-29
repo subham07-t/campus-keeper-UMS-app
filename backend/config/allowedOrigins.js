@@ -1,5 +1,5 @@
-const developmentOrigins = ["http://localhost:3000"];
-const productionOrigins = ["https://myapp.com"];
+const developmentOrigins = ["http://localhost:5173"];
+const productionOrigins = ["https://campus-keeper-frontend.vercel.app"];
 
 module.exports = {
   development: developmentOrigins,

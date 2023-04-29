@@ -1,40 +1,38 @@
 require("dotenv").config();
 const allowedOrigins = require("./allowedOrigins");
 
-const config = {
-  development: {
-    port: process.env.DEV_PORT,
-    corsOptions: {
-      origin: (origin, callback) => {
-        if (allowedOrigins.development.indexOf(origin) !== -1 || !origin) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
-      credentials: true,
-      optionsSuccessStatus: 200,
+const development = {
+  port: process.env.DEV_PORT,
+  corsOptions: {
+    origin: (origin, callback) => {
+      if (allowedOrigins.development.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
     },
-    mongoDbUrl: process.env.DEV_DB_URL,
+    credentials: true,
+    optionsSuccessStatus: 200,
   },
-  production: {
-    port: process.env.PROD_PORT,
-    corsOptions: {
-      origin: (origin, callback) => {
-        if (allowedOrigins.production.indexOf(origin) !== -1 || !origin) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
-      credentials: true,
-      optionsSuccessStatus: 200,
-    },
-    mongoDbUrl: process.env.PROD_DB_URL,
-  },
+  mongoDbUrl: process.env.DEV_DB_URL,
 };
 
-let nodeEnv = process.env.NODE_ENV;
-console.log(nodeEnv);
+const production = {
+  port: process.env.PROD_PORT,
+  corsOptions: {
+    origin: (origin, callback) => {
+      if (allowedOrigins.production.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    optionsSuccessStatus: 200,
+  },
+  mongoDbUrl: process.env.PROD_DB_URL,
+};
 
-module.exports = config[nodeEnv];
+const config = { development, production };
+
+module.exports = config[process.env.NODE_ENV];

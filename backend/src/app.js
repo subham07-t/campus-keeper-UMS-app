@@ -5,7 +5,7 @@ const config = require("../config/config");
 const connectDB = require("../config/dbConn");
 
 const app = express();
-console.log(config);
+
 // DB connection
 connectDB(config.mongoDbUrl);
 
