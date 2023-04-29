@@ -14,7 +14,7 @@ const development = {
     credentials: true,
     optionsSuccessStatus: 200,
   },
-  mongoDbUrl: process.env.DEV_DB_URL,
+  mongoDbUrl: process.env.MONGO_DB_URL,
 };
 
 const production = {
@@ -30,7 +30,7 @@ const production = {
     credentials: true,
     optionsSuccessStatus: 200,
   },
-  mongoDbUrl: process.env.PROD_DB_URL,
+  mongoDbUrl: process.env.MONGO_DB_URL,
 };
 
 const config = { development, production };
