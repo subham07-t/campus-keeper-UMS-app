@@ -36,13 +36,13 @@ Start the Project on browser
 ## Commit naming convention for better practice.
 
 `FE:changes`,
-`FE:feat:changes`,
-`FE:fix:changes`,
-`FE:style:changes`
+`FE[feat]:changes`,
+`FE[fix]:changes`,
+`FE[style]:changes`
 
 `BE:changes`,
-`BE:feat:changes`,
-`BE:fix:changes`,
+`BE[feat]:changes`,
+`BE[fix]:changes`,
 
 ### For read .md file in your vs code.
 
