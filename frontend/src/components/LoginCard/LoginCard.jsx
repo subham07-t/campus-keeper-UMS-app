@@ -47,6 +47,8 @@ const LoginCard = () => {
       localStorage.setItem("user-info", JSON.stringify(result.username));
       navigate("./dashboard");
     }
+    
+
   };
 
   return (
@@ -54,7 +56,8 @@ const LoginCard = () => {
       <div className="login_card_content">
         <h1 className="login__heading">Login</h1>
         <div className="input__div">
-          <input
+          <div className="inputdiv_sub1">
+            <input
             className="input__field"
             placeholder="Username"
             value={userName}
@@ -63,8 +66,12 @@ const LoginCard = () => {
               setErrUserName("");
             }}
           />
+         
           {errUserName ? <p className="error_msg">{errUserName}</p> : null}
-          <input
+          
+          </div>
+            <div className="inputdiv_sub2">
+            <input
             className="input__field"
             placeholder="Password"
             value={password}
@@ -73,11 +80,17 @@ const LoginCard = () => {
               setErrPassword("");
             }}
           />
+         
           {errPassword ? <p className="error_msg">{errPassword}</p> : null}
+          
+            </div>
           <p className="forgot__pass-text">Forgot Password?</p>
+          <div>
           <button className="login__btn" onClick={navigateToDashboard}>
             Login
           </button>
+            <p className="error_msg">Error msg here</p>
+          </div>
         </div>
       </div>
     </div>

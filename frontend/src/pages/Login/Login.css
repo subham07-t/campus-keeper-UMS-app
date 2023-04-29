@@ -6,7 +6,7 @@
     padding: 20px;
 } */
 
-.container {
+/* .container {
     width: 100%;
     background-color: var(--bg-color);
 }
@@ -14,5 +14,14 @@
     width: 1200px;
     margin: auto;
     display: table;
-}
+} */
 
+.main__div{
+    width: 100%;
+    background-color: var(--bg-color);
+}
+ .container{
+    width: 88%;
+    margin: auto;
+    display: table;
+}

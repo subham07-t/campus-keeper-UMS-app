@@ -5,8 +5,8 @@ import LoginCard from "../../components/LoginCard";
 
 const Login = () => {
   return (
-    <div className="container">
-      <div className="main__div">
+    <div className="main__div">
+      <div className="container">
       <WelcomeCard />
       <LoginCard />
       </div>
