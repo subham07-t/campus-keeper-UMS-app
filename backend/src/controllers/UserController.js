@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 const getAllUsers = asyncHandler(async (req, res) => {
   // Get all users from MongoDB but don't return password
