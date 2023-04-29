@@ -8,6 +8,7 @@ const LoginCard = () => {
   const [password, setPassword] = useState("");
   const [errUserName, setErrUserName] = useState("");
   const [errPassword, setErrPassword] = useState("");
+  const [errCredentials, setErrCredentials] = useState("");
 
   const navigateToDashboard = async () => {
     if (userName === "") {
@@ -43,12 +44,16 @@ const LoginCard = () => {
 
     const result = await response.json();
 
+    if (result === "User not found") {
+      setErrCredentials("Wrong Credentials");
+    }
+
     if (result.msg === "success") {
       localStorage.setItem("user-info", JSON.stringify(result.username));
       navigate("./dashboard");
     }
-    
 
+    console.log(result);
   };
 
   return (
@@ -58,38 +63,40 @@ const LoginCard = () => {
         <div className="input__div">
           <div className="inputdiv_sub1">
             <input
-            className="input__field"
-            placeholder="Username"
-            value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-              setErrUserName("");
-            }}
-          />
-         
-          {errUserName ? <p className="error_msg">{errUserName}</p> : null}
-          
+              className="input__field"
+              placeholder="Username"
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+                setErrUserName("");
+                setErrCredentials("");
+              }}
+            />
+
+            {errUserName ? <p className="error_msg">{errUserName}</p> : null}
           </div>
-            <div className="inputdiv_sub2">
+          <div className="inputdiv_sub2">
             <input
-            className="input__field"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setErrPassword("");
-            }}
-          />
-         
-          {errPassword ? <p className="error_msg">{errPassword}</p> : null}
-          
-            </div>
+              className="input__field"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setErrPassword("");
+                setErrCredentials("");
+              }}
+            />
+
+            {errPassword ? <p className="error_msg">{errPassword}</p> : null}
+          </div>
           <p className="forgot__pass-text">Forgot Password?</p>
-          <div>
-          <button className="login__btn" onClick={navigateToDashboard}>
-            Login
-          </button>
-            <p className="error_msg">Error msg here</p>
+          <div className="inputdiv_sub2">
+            <button className="login__btn" onClick={navigateToDashboard}>
+              Login
+            </button>
+            {errCredentials ? (
+              <p className="error_msg">{errCredentials}</p>
+            ) : null}
           </div>
         </div>
       </div>
