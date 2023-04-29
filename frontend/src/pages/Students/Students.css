@@ -75,3 +75,7 @@
     background-color: #03C03C;
     width: 140px;
 }
+
+.sub__div-two .MuiInputBase-inputMultiline{
+    color: var(--color-white);
+} 
