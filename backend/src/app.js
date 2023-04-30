@@ -15,9 +15,11 @@ app.use(express.json());
 app.use("/", express.static(path.join(__dirname, "..", "/public")));
 
 // routes define
+const test = require("./routes/test");
 const homeRoute = require("./routes/home");
-const authRoute = require("./routes/authRoutes");
+// const authRoute = require("./routes/authRoutes");
 const userRoute = require("./routes/userRoutes");
+app.use("/test", test);
 app.use("/", homeRoute);
 // app.use("/auth", authRoute);
 app.use("/user", userRoute);
