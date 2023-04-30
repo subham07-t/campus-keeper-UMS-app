@@ -2,6 +2,7 @@
 import { Navigate } from "react-router-dom";
 const Profile = () => {
   // const [first, setfirst] = useState("");
+  //import.meta.env.VITE_PRODUCTION_URL
   const test = async () => {
     const res = await fetch("https://campus-keeper-server.vercel.app", {
       method: "GET",
