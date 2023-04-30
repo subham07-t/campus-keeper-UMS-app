@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const FacultyDetailSchema = new Schema(
+const FacultyDetailSchema = new mongoose.Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User" },
-    courses: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
   },
   { timestamps: true }
 );
-mongoose.model("FacultyDetail", FacultyDetailSchema);
+module.exports = mongoose.model("FacultyDetail", FacultyDetailSchema);

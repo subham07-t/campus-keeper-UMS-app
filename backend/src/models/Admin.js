@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const AdminDetailSchema = new mongoose.Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User" },
-    faculty: { type: Schema.Types.ObjectId, ref: "FacultyDetail" },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    faculty: { type: mongoose.Schema.Types.ObjectId, ref: "FacultyDetail" },
   },
   { timestamps: true }
 );

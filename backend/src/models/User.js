@@ -16,7 +16,6 @@ const UserSchema = new mongoose.Schema(
     },
     roleDetails: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       refPath: "role",
     },
     authDetails: { type: mongoose.Schema.Types.ObjectId, ref: "AuthDetail" },
