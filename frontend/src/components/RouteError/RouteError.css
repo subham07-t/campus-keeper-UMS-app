@@ -1,0 +1,17 @@
+.route__main-div{
+margin-top: 10%;
+}
+
+.error{
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.status{
+    font-size: 100px;
+    text-align: center;
+    color: var(--color-white);
+}

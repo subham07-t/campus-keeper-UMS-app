@@ -19,6 +19,7 @@ const LoginCard = () => {
     //   return;
     // }
     // setErrUserName("");
+
     // if (password === "") {
     //   setErrPassword("Please Enter Your Password...");
     //   return;
@@ -27,28 +28,37 @@ const LoginCard = () => {
     //   return;
     // }
     // setErrPassword("");
+
     // const userCredentials = {
     //   email: userName,
     //   password: password,
     // };
-    // const response = await fetch("http://localhost:8080/auth/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(userCredentials),
-    // });
+
+    // const response = await fetch(
+    //   "https://campus-keeper-server.vercel.app/test",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(userCredentials),
+    //   }
+    // );
+
     // const result = await response.json();
+
     // if (result === "User not found") {
     //   setErrCredentials("Wrong Credentials");
     // }
+
     // if (result.msg === "success") {
     //   localStorage.setItem("user-info", JSON.stringify(result.username));
     //   navigate("./dashboard");
     // }
-    // console.log(result);
 
-    navigate("./dashboard");
+    navigate("/dashboard/profile");
+
+    console.log(result);
   };
 
   return (
