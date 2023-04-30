@@ -2,6 +2,8 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { sidebarData } from "../../utils/constants";
 
+//Design this sidebar according to template provided...
+
 const Sidebar = () => {
   return (
     <div className="sidebar__div">
