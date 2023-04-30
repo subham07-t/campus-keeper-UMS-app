@@ -56,7 +56,7 @@ const LoginCard = () => {
     //   navigate("./dashboard");
     // }
 
-    navigate("/dashboard");
+    navigate("/dashboard/profile");
 
     console.log(result);
   };

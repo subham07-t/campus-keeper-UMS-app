@@ -2,27 +2,27 @@ export const sidebarData = [
   {
     id: 1,
     component: "Profile",
-    url: "/profile",
+    url: "profile",
   },
   {
     id: 2,
     component: "Add Studensts",
-    url: "/addStudents",
+    url: "addStudents",
   },
   {
     id: 3,
     component: "Add Faculties",
-    url: "/addFaculties",
+    url: "addFaculties",
   },
   {
     id: 4,
     component: "Departments",
-    url: "/departments",
+    url: "departments",
   },
   {
     id: 5,
     component: "Logout",
-    url: "/logout",
+    url: "logout",
   },
 ];
 
