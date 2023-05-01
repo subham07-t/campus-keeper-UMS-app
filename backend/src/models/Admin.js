@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const AdminDetailSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    priority: { type: String, unique: true },
     faculty: { type: mongoose.Schema.Types.ObjectId, ref: "FacultyDetail" },
   },
   { timestamps: true }

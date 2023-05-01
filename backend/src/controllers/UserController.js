@@ -1,6 +1,8 @@
 const User = require("../models/User");
+const Student = require("../models/Student");
+const Faculty = require("../models/Faculty");
+const Admin = require("../models/Admin");
 const asyncHandler = require("express-async-handler");
-
 
 const getAllUsers = asyncHandler(async (req, res) => {
   // Get all users from MongoDB but don't return password
@@ -14,74 +16,72 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.json(users);
 });
 
-const createNewUser = asyncHandler(async (req, res) => {
-  const { username, email, password, roles } = req.body;
+const createRoleDetail = asyncHandler(async (req, res) => {
+  const { role, id } = req.params;
+  const additionalDetails = req.body;
+  const user = await User.findOne({ roleDetails: id }).lean().exec();
+  const modifiedUpdateDetails = { user: user._id, ...additionalDetails };
 
-  // Confirm data
-  if (
-    !username ||
-    !email ||
-    !password ||
-    !Array.isArray(roles) ||
-    !roles.length
-  ) {
-    return res.status(400).json({ message: "All fields are required" });
+  let updatedRoleDetail;
+  // set the correct RoleDetailModel based on the role parameter
+  switch (role) {
+    case "student":
+      updatedRoleDetail = await Student.findByIdAndUpdate(
+        id,
+        { $set: modifiedUpdateDetails },
+        { new: true }
+      );
+      break;
+    case "admin":
+      updatedRoleDetail = await Admin.findByIdAndUpdate(
+        id,
+        { $set: modifiedUpdateDetails },
+        { new: true }
+      );
+      break;
+    case "faculty":
+      updatedRoleDetail = await Faculty.findByIdAndUpdate(
+        id,
+        { $set: modifiedUpdateDetails },
+        { new: true }
+      );
+      break;
+    default:
+      return res.status(400).json({ error: "Invalid role" });
   }
 
-  // Check for duplicate username
-  const duplicate = await User.findOne({ $or: [{ username }, { email }] })
-    .lean()
-    .exec();
-
-  if (duplicate) {
-    return res.status(409).json({ message: "Duplicate username or email" });
+  if (!updatedRoleDetail) {
+    return res.status(404).json({ error: "Role detail not found" });
   }
 
-  // Hash password
-  const hashedPwd = await bcrypt.hash(password, 10); // salt rounds
-
-  const userObject = { username, email, password: hashedPwd, roles };
-
-  // Create and store new user
-  const user = await User.create(userObject);
-
-  if (user) {
-    //created
-    res.status(201).json({ message: `New user ${username} created` });
-  } else {
-    res.status(400).json({ message: "Invalid user data received" });
-  }
+  res.status(201).json({ message: `New user ${role} created` });
 });
 
-const updateUser = asyncHandler(async (req, res) => {
-  const { username, roles } = req.body;
-  const { id } = req.params;
-  // Confirm data
-  if (!id || !username || !Array.isArray(roles) || !roles.length) {
-    return res.status(400).json({ message: "All fields are required" });
+const updateRoleDetail = asyncHandler(async (req, res) => {
+  const { id, role } = req.params;
+  const { updateDetails } = req.body;
+
+  switch (role) {
+    case "student":
+      updatedRole = await StudentDetail.findByIdAndUpdate(id, updateDetails, {
+        new: true,
+      });
+      break;
+    case "faculty":
+      updatedRole = await FacultyDetail.findByIdAndUpdate(id, updateDetails, {
+        new: true,
+      });
+      break;
+    case "admin":
+      updatedRole = await AdminDetail.findByIdAndUpdate(id, updateDetails, {
+        new: true,
+      });
+      break;
+    default:
+      return res.status(400).json({ message: "Invalid role" });
   }
 
-  // Does the user exist to update?
-  const user = await User.findById(id).exec();
-
-  if (!user) {
-    return res.status(400).json({ message: "User not found" });
-  }
-
-  // Check for duplicate
-  const duplicate = await User.findOne({ username }).lean().exec();
-
-  // Allow updates to the original user
-  if (duplicate && duplicate?._id.toString() !== id) {
-    return res.status(409).json({ message: "Duplicate username" });
-  }
-
-  user.username = username;
-  user.roles = roles;
-
-  const updatedUser = await user.save();
-
-  res.json({ message: `${updatedUser.username} updated` });
+  res.json({ message: `${updatedRole.user} updated` });
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
@@ -101,16 +101,37 @@ const deleteUser = asyncHandler(async (req, res) => {
 
   const result = await user.deleteOne();
 
-  const reply = `Username ${result.username} with ID ${result._id} deleted`;
+  const reply = `Username ${result.email} with ID ${result._id} deleted`;
 
   res.json(reply);
 });
 
+const deleteRoleDetail = asyncHandler(async (req, res) => {
+  const { id, role } = req.params;
+
+  switch (role) {
+    case "student":
+      deletedRole = await StudentDetail.findOneAndDelete(id);
+      break;
+    case "faculty":
+      deletedRole = await FacultyDetail.findByIdAndUpdate(id);
+      break;
+    case "admin":
+      deletedRole = await AdminDetail.findByIdAndUpdate(id);
+      break;
+    default:
+      return res.status(400).json({ message: "Invalid role" });
+  }
+
+  res.json({ message: `${deletedRole.user} deleted` });
+});
+
 module.exports = {
   getAllUsers,
-  createNewUser,
-  updateUser,
+  createRoleDetail,
+  updateRoleDetail,
   deleteUser,
+  deleteRoleDetail,
 };
 
 // GET /api/users - Get all users (admin only)
