@@ -2,24 +2,14 @@
     "version": 2,
     "name": "campus-keeper-server",
     "builds": [
-        { "src": "src/app.js", "use": "@vercel/node" }
+        { "src": "src/app.js", "use": "@vercel/node" },
+        { "src": "src/controllers/*.js", "use": "@vercel/node" }
+
     ],
     "routes": [
         {
             "src": "/(.*)",
             "dest": "/src/app.js"
-        },   
-        {
-            "src": "/controllers/:path*",
-            "dest": "/src/controllers/:path*"
-        }, 
-        {
-            "src": "/routes/:path*",
-            "dest": "/src/routes/:path*"
-        },
-        {
-            "src": "/models/:path*",
-            "dest": "/src/models/:path*"
         }
 
     ]
