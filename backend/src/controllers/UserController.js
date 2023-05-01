@@ -4,7 +4,7 @@ const Faculty = require("../models/Faculty");
 const Admin = require("../models/Admin");
 const asyncHandler = require("express-async-handler");
 
-const getAllUsers = asyncHandler(async (req, res) => {
+export const getAllUsers = asyncHandler(async (req, res) => {
   // Get all users from MongoDB but don't return password
   const users = await User.find().select("-password").lean();
 
@@ -16,7 +16,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.json(users);
 });
 
-const createRoleDetail = asyncHandler(async (req, res) => {
+export const createRoleDetail = asyncHandler(async (req, res) => {
   const { role, id } = req.params;
   const additionalDetails = req.body;
   const user = await User.findOne({ roleDetails: id }).lean().exec();
@@ -56,7 +56,7 @@ const createRoleDetail = asyncHandler(async (req, res) => {
   res.status(201).json({ message: `New user ${role} created` });
 });
 
-const updateRoleDetail = asyncHandler(async (req, res) => {
+export const updateRoleDetail = asyncHandler(async (req, res) => {
   const { id, role } = req.params;
   const { updateDetails } = req.body;
 
@@ -83,7 +83,7 @@ const updateRoleDetail = asyncHandler(async (req, res) => {
   res.json({ message: `${updatedRole.user} updated` });
 });
 
-const deleteUser = asyncHandler(async (req, res) => {
+export const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
   // Confirm data
@@ -105,7 +105,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   res.json(reply);
 });
 
-const deleteRoleDetail = asyncHandler(async (req, res) => {
+export const deleteRoleDetail = asyncHandler(async (req, res) => {
   const { id, role } = req.params;
 
   switch (role) {
@@ -124,11 +124,3 @@ const deleteRoleDetail = asyncHandler(async (req, res) => {
 
   res.json({ message: `${deletedRole.user} deleted` });
 });
-
-module.exports = {
-  getAllUsers,
-  createRoleDetail,
-  updateRoleDetail,
-  deleteUser,
-  deleteRoleDetail,
-};
