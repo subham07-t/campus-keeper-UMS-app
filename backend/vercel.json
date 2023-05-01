@@ -3,12 +3,8 @@
     "name": "campus-keeper-server",
     "builds": [
         {
-            "src": "package.json",
-            "use": "@vercel/node"
-        },
-        {
             "src": "/src/app.js",
-            "use": "@vercel/node"
+            "use": "@now/node"
         }
     ],
     "routes": [
