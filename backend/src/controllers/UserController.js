@@ -1,140 +1,134 @@
-const User = require("../models/User");
-const Student = require("../models/Student");
-const Faculty = require("../models/Faculty");
-const Admin = require("../models/Admin");
-const asyncHandler = require("express-async-handler");
+// const User = require("../models/User");
+// const Student = require("../models/Student");
+// const Faculty = require("../models/Faculty");
+// const Admin = require("../models/Admin");
+// const asyncHandler = require("express-async-handler");
 
-const getAllUsers = asyncHandler(async (req, res) => {
-  // Get all users from MongoDB but don't return password
-  const users = await User.find().select("-password").lean();
+// const getAllUsers = asyncHandler(async (req, res) => {
+//   // Get all users from MongoDB but don't return password
+//   const users = await User.find().select("-password").lean();
 
-  // If no users
-  if (!users?.length) {
-    return res.status(400).json({ message: "No users found" });
-  }
+//   // If no users
+//   if (!users?.length) {
+//     return res.status(400).json({ message: "No users found" });
+//   }
 
-  res.json(users);
-});
+//   res.json(users);
+// });
 
-const createRoleDetail = asyncHandler(async (req, res) => {
-  const { role, id } = req.params;
-  const additionalDetails = req.body;
-  const user = await User.findOne({ roleDetails: id }).lean().exec();
-  const modifiedUpdateDetails = { user: user._id, ...additionalDetails };
+// const createRoleDetail = asyncHandler(async (req, res) => {
+//   const { role, id } = req.params;
+//   const additionalDetails = req.body;
+//   const user = await User.findOne({ roleDetails: id }).lean().exec();
+//   const modifiedUpdateDetails = { user: user._id, ...additionalDetails };
 
-  let updatedRoleDetail;
-  // set the correct RoleDetailModel based on the role parameter
-  switch (role) {
-    case "student":
-      updatedRoleDetail = await Student.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    case "admin":
-      updatedRoleDetail = await Admin.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    case "faculty":
-      updatedRoleDetail = await Faculty.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    default:
-      return res.status(400).json({ error: "Invalid role" });
-  }
+//   let updatedRoleDetail;
+//   switch (role) {
+//     case "student":
+//       updatedRoleDetail = await Student.findByIdAndUpdate(
+//         id,
+//         { $set: modifiedUpdateDetails },
+//         { new: true }
+//       );
+//       break;
+//     case "admin":
+//       updatedRoleDetail = await Admin.findByIdAndUpdate(
+//         id,
+//         { $set: modifiedUpdateDetails },
+//         { new: true }
+//       );
+//       break;
+//     case "faculty":
+//       updatedRoleDetail = await Faculty.findByIdAndUpdate(
+//         id,
+//         { $set: modifiedUpdateDetails },
+//         { new: true }
+//       );
+//       break;
+//     default:
+//       return res.status(400).json({ error: "Invalid role" });
+//   }
 
-  if (!updatedRoleDetail) {
-    return res.status(404).json({ error: "Role detail not found" });
-  }
+//   if (!updatedRoleDetail) {
+//     return res.status(404).json({ error: "Role detail not found" });
+//   }
 
-  res.status(201).json({ message: `New user ${role} created` });
-});
+//   res.status(201).json({ message: `New user ${role} created` });
+// });
 
-const updateRoleDetail = asyncHandler(async (req, res) => {
-  const { id, role } = req.params;
-  const { updateDetails } = req.body;
+// const updateRoleDetail = asyncHandler(async (req, res) => {
+//   const { id, role } = req.params;
+//   const { updateDetails } = req.body;
 
-  switch (role) {
-    case "student":
-      updatedRole = await StudentDetail.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    case "faculty":
-      updatedRole = await FacultyDetail.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    case "admin":
-      updatedRole = await AdminDetail.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    default:
-      return res.status(400).json({ message: "Invalid role" });
-  }
+//   switch (role) {
+//     case "student":
+//       updatedRole = await StudentDetail.findByIdAndUpdate(id, updateDetails, {
+//         new: true,
+//       });
+//       break;
+//     case "faculty":
+//       updatedRole = await FacultyDetail.findByIdAndUpdate(id, updateDetails, {
+//         new: true,
+//       });
+//       break;
+//     case "admin":
+//       updatedRole = await AdminDetail.findByIdAndUpdate(id, updateDetails, {
+//         new: true,
+//       });
+//       break;
+//     default:
+//       return res.status(400).json({ message: "Invalid role" });
+//   }
 
-  res.json({ message: `${updatedRole.user} updated` });
-});
+//   res.json({ message: `${updatedRole.user} updated` });
+// });
 
-const deleteUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+// const deleteUser = asyncHandler(async (req, res) => {
+//   const { id } = req.params;
 
-  // Confirm data
-  if (!id) {
-    return res.status(400).json({ message: "User ID Required" });
-  }
+//   // Confirm data
+//   if (!id) {
+//     return res.status(400).json({ message: "User ID Required" });
+//   }
 
-  // Does the user exist to delete?
-  const user = await User.findById(id).exec();
+//   // Does the user exist to delete?
+//   const user = await User.findById(id).exec();
 
-  if (!user) {
-    return res.status(400).json({ message: "User not found" });
-  }
+//   if (!user) {
+//     return res.status(400).json({ message: "User not found" });
+//   }
 
-  const result = await user.deleteOne();
+//   const result = await user.deleteOne();
 
-  const reply = `Username ${result.email} with ID ${result._id} deleted`;
+//   const reply = `Username ${result.email} with ID ${result._id} deleted`;
 
-  res.json(reply);
-});
+//   res.json(reply);
+// });
 
-const deleteRoleDetail = asyncHandler(async (req, res) => {
-  const { id, role } = req.params;
+// const deleteRoleDetail = asyncHandler(async (req, res) => {
+//   const { id, role } = req.params;
 
-  switch (role) {
-    case "student":
-      deletedRole = await StudentDetail.findOneAndDelete(id);
-      break;
-    case "faculty":
-      deletedRole = await FacultyDetail.findByIdAndUpdate(id);
-      break;
-    case "admin":
-      deletedRole = await AdminDetail.findByIdAndUpdate(id);
-      break;
-    default:
-      return res.status(400).json({ message: "Invalid role" });
-  }
+//   switch (role) {
+//     case "student":
+//       deletedRole = await StudentDetail.findOneAndDelete(id);
+//       break;
+//     case "faculty":
+//       deletedRole = await FacultyDetail.findByIdAndUpdate(id);
+//       break;
+//     case "admin":
+//       deletedRole = await AdminDetail.findByIdAndUpdate(id);
+//       break;
+//     default:
+//       return res.status(400).json({ message: "Invalid role" });
+//   }
 
-  res.json({ message: `${deletedRole.user} deleted` });
-});
+//   res.json({ message: `${deletedRole.user} deleted` });
+// });
 
-module.exports = {
-  getAllUsers,
-  createRoleDetail,
-  updateRoleDetail,
-  deleteUser,
-  deleteRoleDetail,
-};
-
-// GET /api/users - Get all users (admin only)
-// GET /api/users/:id - Get a specific user by ID
-// PUT /api/users/:id - Update a specific user by ID
-// DELETE /api/users/:id - Delete a specific user by ID
+// module.exports = {
+//   getAllUsers,
+//   createRoleDetail,
+//   updateRoleDetail,
+//   deleteUser,
+//   deleteRoleDetail,
+// };
