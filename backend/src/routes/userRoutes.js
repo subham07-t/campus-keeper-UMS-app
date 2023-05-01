@@ -5,7 +5,7 @@ import {
   updateRoleDetail,
   deleteRoleDetail,
   getAllUsers,
-} from "../controllers/userController.js";
+} from "../controllers/userController";
 
 router.route("/").get(getAllUsers);
 router.route("/:role/:id").put(createRoleDetail);
