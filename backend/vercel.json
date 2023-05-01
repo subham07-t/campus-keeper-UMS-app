@@ -3,7 +3,7 @@
     "name": "campus-keeper-server",
     "builds": [
         {
-            "src": "src/**/*.js",
+            "src": "src/app.js",
             "use": "@vercel/node"
         }
     ],
