@@ -3,9 +3,9 @@ const Auth = require("../models/Auth");
 const Student = require("../models/Student");
 const Faculty = require("../models/Faculty");
 const Admin = require("../models/Admin");
-
+const bcrypt = require("bcrypt");
 const asyncHandler = require("express-async-handler");
-const CryptoJS = require("crypto-js");
+// const CryptoJS = require("crypto-js");
 // const jwt = require("jsonwebtoken");
 
 
@@ -23,7 +23,8 @@ const register = asyncHandler(async (req, res) => {
     }
 
 
-    const hashedPwd = CryptoJS.AES.encrypt(password, process.env.PASSWORD_SECRET).toString()
+    // const hashedPwd = CryptoJS.AES.encrypt(password, process.env.PASSWORD_SECRET).toString()
+    const hashedPwd = await bcrypt.hash(password, 10);
     const authDetail = await Auth.create({
         password: hashedPwd,
     });
@@ -62,20 +63,20 @@ const register = asyncHandler(async (req, res) => {
     }
 });
 
-const validPassword = (passwordToCheck, password) => {
+// const validPassword = (passwordToCheck, password) => {
 
-    const hashedPassword = CryptoJS.AES.decrypt(
-        password,
-        process.env.PASSWORD_SECRET
-    );
-    const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-    if (originalPassword === passwordToCheck) {
-        return true;
-    }
+//     const hashedPassword = CryptoJS.AES.decrypt(
+//         password,
+//         process.env.PASSWORD_SECRET
+//     );
+//     const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+//     if (originalPassword === passwordToCheck) {
+//         return true;
+//     }
 
-    return false;
+//     return false;
 
-}
+// }
 
 const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
@@ -88,7 +89,8 @@ const login = asyncHandler(async (req, res) => {
     if (!user) {
         res.status(401).json("User not found");
     } else {
-        const isMatch = validPassword(password, user.authDetails.password);
+        // const isMatch = validPassword(password, user.authDetails.password);
+        const isMatch = await bcrypt.compare(password, user.authDetails.password);
 
         if (isMatch) {
             const email = user.email;
