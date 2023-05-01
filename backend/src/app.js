@@ -12,8 +12,7 @@ connectDB(config.mongoDbUrl);
 //middleware functions
 app.use(cors(config.corsOptions));
 app.use(express.json());
-app.use("/", express.static(path.join(__dirname, "..", "/public")));
-
+app.use("/", express.static(path.join(__dirname, "/public")));
 // routes define
 const test = require("./routes/test");
 const homeRoute = require("./routes/home");
@@ -28,7 +27,7 @@ app.use("/user", userRoute);
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
-    res.sendFile(path.join(__dirname, "..", "/src/views", "404.html"));
+    res.sendFile(path.join(__dirname, "/views", "404.html"));
   } else if (req.accepts("json")) {
     res.json({ message: "404 Not Found" });
   } else {
