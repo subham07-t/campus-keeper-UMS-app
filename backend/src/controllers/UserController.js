@@ -127,8 +127,8 @@ const deleteRoleDetail = asyncHandler(async (req, res) => {
 
 export default {
   getAllUsers,
-  createRoleDetail,
   updateRoleDetail,
-  deleteUser,
   deleteRoleDetail,
+  deleteUser,
+  createRoleDetail,
 };
