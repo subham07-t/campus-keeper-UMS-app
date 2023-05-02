@@ -4,7 +4,9 @@ const productionOrigins = [
   "https://campus-keeper-frontend.vercel.app",
 ];
 
-module.exports = {
+const allowedOrigins = {
   development: developmentOrigins,
   production: productionOrigins,
 };
+
+export default allowedOrigins;

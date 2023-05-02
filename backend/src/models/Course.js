@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema } from "mongoose";
 const CourseDetailSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -14,4 +14,4 @@ const CourseDetailSchema = new Schema(
   },
   { timestamps: true }
 );
-mongoose.model("Course", CourseDetailSchema);
+export default mongoose.model("Course", CourseDetailSchema);
