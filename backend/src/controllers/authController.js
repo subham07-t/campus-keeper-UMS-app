@@ -101,11 +101,12 @@ const login = asyncHandler(async (req, res) => {
   }
 });
 
-export default {
+const authController = {
   register,
   login,
 };
 
+export default authController;
 // POST /api/auth/register - Register a new user
 // POST /api/auth/login - Authenticate a user and generate a token
 // POST /api/auth/logout - Log out the current user

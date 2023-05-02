@@ -125,10 +125,11 @@ const deleteRoleDetail = asyncHandler(async (req, res) => {
   res.json({ message: `${deletedRole.user} deleted` });
 });
 
-export default {
+const userController = {
   getAllUsers,
   updateRoleDetail,
   deleteRoleDetail,
   deleteUser,
   createRoleDetail,
 };
+export default userController;
