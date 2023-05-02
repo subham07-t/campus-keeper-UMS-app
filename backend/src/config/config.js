@@ -1,5 +1,5 @@
-require("dotenv").config();
-const allowedOrigins = require("./allowedOrigins");
+import "dotenv/config";
+import allowedOrigins from "./allowedOrigins.js";
 
 const development = {
   port: process.env.DEV_PORT,
@@ -35,4 +35,4 @@ const production = {
 
 const config = { development, production };
 
-module.exports = config[process.env.NODE_ENV];
+export default config[process.env.NODE_ENV];

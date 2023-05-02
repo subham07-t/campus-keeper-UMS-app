@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema } from "mongoose";
+
 const DepartmentDetailSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -9,4 +10,4 @@ const DepartmentDetailSchema = new Schema(
   },
   { timestamps: true }
 );
-mongoose.model("Department", DepartmentDetailSchema);
+export default mongoose.model("Department", DepartmentDetailSchema);

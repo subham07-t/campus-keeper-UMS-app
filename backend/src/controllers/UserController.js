@@ -1,10 +1,10 @@
-const User = require("../models/User");
-const Student = require("../models/Student");
-const Faculty = require("../models/Faculty");
-const Admin = require("../models/Admin");
-const asyncHandler = require("express-async-handler");
+import User from "../models/User.js";
+import Student from "../models/Student.js";
+import Faculty from "../models/Faculty.js";
+import Admin from "../models/Admin.js";
+import asyncHandler from "express-async-handler";
 
-export const getAllUsers = asyncHandler(async (req, res) => {
+const getAllUsers = asyncHandler(async (req, res) => {
   // Get all users from MongoDB but don't return password
   const users = await User.find().select("-password").lean();
 
@@ -16,7 +16,7 @@ export const getAllUsers = asyncHandler(async (req, res) => {
   res.json(users);
 });
 
-export const createRoleDetail = asyncHandler(async (req, res) => {
+const createRoleDetail = asyncHandler(async (req, res) => {
   const { role, id } = req.params;
   const additionalDetails = req.body;
   const user = await User.findOne({ roleDetails: id }).lean().exec();
@@ -56,7 +56,7 @@ export const createRoleDetail = asyncHandler(async (req, res) => {
   res.status(201).json({ message: `New user ${role} created` });
 });
 
-export const updateRoleDetail = asyncHandler(async (req, res) => {
+const updateRoleDetail = asyncHandler(async (req, res) => {
   const { id, role } = req.params;
   const { updateDetails } = req.body;
 
@@ -83,7 +83,7 @@ export const updateRoleDetail = asyncHandler(async (req, res) => {
   res.json({ message: `${updatedRole.user} updated` });
 });
 
-export const deleteUser = asyncHandler(async (req, res) => {
+const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
   // Confirm data
@@ -105,7 +105,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
   res.json(reply);
 });
 
-export const deleteRoleDetail = asyncHandler(async (req, res) => {
+const deleteRoleDetail = asyncHandler(async (req, res) => {
   const { id, role } = req.params;
 
   switch (role) {
@@ -124,3 +124,11 @@ export const deleteRoleDetail = asyncHandler(async (req, res) => {
 
   res.json({ message: `${deletedRole.user} deleted` });
 });
+
+export default {
+  getAllUsers,
+  createRoleDetail,
+  updateRoleDetail,
+  deleteUser,
+  deleteRoleDetail,
+};

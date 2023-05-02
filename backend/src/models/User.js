@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema } from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
@@ -15,12 +15,12 @@ const UserSchema = new mongoose.Schema(
       default: "student",
     },
     roleDetails: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       refPath: "role",
     },
-    authDetails: { type: mongoose.Schema.Types.ObjectId, ref: "AuthDetail" },
+    authDetails: { type: Schema.Types.ObjectId, ref: "AuthDetail" },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", UserSchema);
+export default mongoose.model("User", UserSchema);

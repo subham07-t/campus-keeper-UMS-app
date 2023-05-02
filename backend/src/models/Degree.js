@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema } from "mongoose";
+
 const DegreeDetailSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -43,4 +44,4 @@ const DegreeDetailSchema = new Schema(
   },
   { timestamps: true }
 );
-mongoose.model("DegreeDetail", DegreeDetailSchema);
+export default mongoose.model("DegreeDetail", DegreeDetailSchema);

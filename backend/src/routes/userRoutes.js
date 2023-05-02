@@ -1,14 +1,14 @@
-const router = require("express").Router();
-import {
-  createRoleDetail,
-  deleteUser,
-  updateRoleDetail,
-  deleteRoleDetail,
-  getAllUsers,
-} from "../controllers/userController";
+import express from "express";
+import userController from "../controllers/userController.js";
 
-router.route("/").get(getAllUsers);
-router.route("/:role/:id").put(createRoleDetail);
-router.route("/:id").delete(deleteUser);
-router.route("/:role/:id").patch(updateRoleDetail).delete(deleteRoleDetail);
-module.exports = router;
+const router = express.Router();
+
+router.route("/").get(userController.getAllUsers);
+router.route("/:role/:id").put(userController.createRoleDetail);
+router.route("/:id").delete(userController.deleteUser);
+router
+  .route("/:role/:id")
+  .patch(userController.updateRoleDetail)
+  .delete(userController.deleteRoleDetail);
+
+export default router;
