@@ -1,5 +1,5 @@
-require("dotenv").config();
-const allowedOrigins = require("./allowedOrigins");
+import "dotenv/config";
+import allowedOrigins from "./allowedOrigins.js";
 
 const development = {
   port: process.env.DEV_PORT,
@@ -14,7 +14,7 @@ const development = {
     credentials: true,
     optionsSuccessStatus: 200,
   },
-  mongoDbUrl: process.env.MONGO_DB_URL,
+  mongoDbUrl: process.env.MONGO_DB_DEV_URL,
 };
 
 const production = {
@@ -30,9 +30,9 @@ const production = {
     credentials: true,
     optionsSuccessStatus: 200,
   },
-  mongoDbUrl: process.env.MONGO_DB_URL,
+  mongoDbUrl: process.env.MONGO_DB_PROD_URL,
 };
 
 const config = { development, production };
 
-module.exports = config[process.env.NODE_ENV];
+export default config[process.env.NODE_ENV];

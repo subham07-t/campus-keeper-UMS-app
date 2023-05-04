@@ -1,61 +1,112 @@
-// const User = require("../models/User");
-// const asyncHandler = require("express-async-handler");
-// // const bcrypt = require("bcrypt");
-// const { generateFromEmail } = require("unique-username-generator");
-// // const CryptoJS = require("crypto-js");
-// // const jwt = require("jsonwebtoken");
+import Auth from "../models/Auth.js";
+import User from "../models/User.js";
+import Student from "../models/Student.js";
+import Faculty from "../models/Faculty.js";
+import Admin from "../models/Admin.js";
+import bcrypt from "bcrypt";
+import asyncHandler from "express-async-handler";
 
-// const register = asyncHandler(async (req, res) => {
-//   const { email, password, roles } = req.body;
+// const CryptoJS = require("crypto-js");
+// const jwt = require("jsonwebtoken");
 
-//   if (!email || !password || !Array.isArray(roles) || !roles.length) {
-//     return res.status(400).json({ message: "All fields are required" });
-//   }
+const register = asyncHandler(async (req, res) => {
+  const { firstName, lastName, email, password, role } = req.body;
 
-//   const username = generateFromEmail(email, 3);
+  if (!firstName || !lastName || !email || !password || !role) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
 
-//   const isEmailExist = await User.findOne({ email }).lean().exec();
-//   if (isEmailExist) {
-//     return res.status(409).json({ message: "Email already exist" });
-//   }
+  const isEmailExist = await User.findOne({ email }).lean().exec();
+  if (isEmailExist) {
+    return res.status(409).json({ message: "Email already exist" });
+  }
 
-//   // const hashedPwd = await bcrypt.hash(password, 10);
+  // const hashedPwd = CryptoJS.AES.encrypt(password, process.env.PASSWORD_SECRET).toString()
+  const hashedPwd = await bcrypt.hash(password, 10);
+  const authDetail = await Auth.create({
+    password: hashedPwd,
+  });
 
-//   const userObject = { username, email, password: password, roles };
-//   const newUser = await User.create(userObject);
+  let roleDetail;
+  switch (role) {
+    case "student":
+      roleDetail = new Student();
+      break;
+    case "faculty":
+      roleDetail = new Faculty();
+      break;
+    case "admin":
+      roleDetail = new Admin();
+      break;
+    default:
+      throw new Error("Invalid Role");
+  }
 
-//   if (newUser) {
-//     //created
-//     res.status(201).json({ message: `New user ${email} created` });
-//   } else {
-//     res.status(400).json({ message: "Invalid user data received" });
-//   }
-// });
+  await roleDetail.save();
+  const userObject = {
+    firstName,
+    lastName,
+    email,
+    role,
+    roleDetails: roleDetail._id,
+    authDetails: authDetail._id,
+  };
+  const newUser = await User.create(userObject);
 
-// const login = asyncHandler(async (req, res) => {
-//   const { email, password } = req.body;
+  if (newUser) {
+    //created
+    res.status(201).json({ message: `New user ${email} created` });
+  } else {
+    res.status(400).json({ message: "Invalid user data received" });
+  }
+});
 
-//   const user = await User.findOne({ email }).lean().exec();
+// const validPassword = (passwordToCheck, password) => {
 
-//   if (!user) {
-//     res.status(401).json("User not found");
-//   } else {
-//     const isMatch = await bcrypt.compare(password, user.password);
-
-//     if (isMatch) {
-//       const username = user.username;
-//       res.status(200).json({ msg: "success", username });
-//     } else {
-//       res.status(401).json("Wrong Credentials");
+//     const hashedPassword = CryptoJS.AES.decrypt(
+//         password,
+//         process.env.PASSWORD_SECRET
+//     );
+//     const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+//     if (originalPassword === passwordToCheck) {
+//         return true;
 //     }
-//   }
-// });
 
-// module.exports = {
-//   register,
-//   login,
-// };
+//     return false;
 
-// // POST /api/auth/register - Register a new user
-// // POST /api/auth/login - Authenticate a user and generate a token
-// // POST /api/auth/logout - Log out the current user
+// }
+
+const login = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email })
+    .populate("authDetails")
+    .lean()
+    .exec();
+
+  if (!user) {
+    res.status(401).json("User not found");
+  } else {
+    // const isMatch = validPassword(password, user.authDetails.password);
+    const isMatch = await bcrypt.compare(password, user.authDetails.password);
+
+    if (isMatch) {
+      const email = user.email;
+      res
+        .status(200)
+        .json({ msg: `success, This ${email} has been logged in` });
+    } else {
+      res.status(401).json("Wrong Credentials");
+    }
+  }
+});
+
+const authController = {
+  register,
+  login,
+};
+
+export default authController;
+// POST /api/auth/register - Register a new user
+// POST /api/auth/login - Authenticate a user and generate a token
+// POST /api/auth/logout - Log out the current user

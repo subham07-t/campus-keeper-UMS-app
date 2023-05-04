@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema } from "mongoose";
+
 const StudentDetailSchema = new mongoose.Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User" },
@@ -12,4 +13,4 @@ const StudentDetailSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-mongoose.model("StudentDetail", StudentDetailSchema);
+export default mongoose.model("StudentDetail", StudentDetailSchema);
