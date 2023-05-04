@@ -9,6 +9,11 @@
     "dev": "set NODE_ENV=development&& nodemon index.js",
     "commit": "git-cz"
   },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
