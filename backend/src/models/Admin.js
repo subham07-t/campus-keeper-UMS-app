@@ -1,11 +1,12 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema } from "mongoose";
 
 const AdminDetailSchema = new mongoose.Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User" },
+    priority: { type: String, unique: true },
     faculty: { type: Schema.Types.ObjectId, ref: "FacultyDetail" },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("AdminDetail", AdminDetailSchema);
+export default mongoose.model("AdminDetail", AdminDetailSchema);
