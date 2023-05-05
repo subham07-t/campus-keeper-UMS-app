@@ -65,8 +65,8 @@ a.logo {
     color: #fff;
     outline: none;
 }
-.search_input:focus::placeholder{
-}
+/* .search_input:focus::placeholder{
+} */
 span.search_icon {
     position: absolute;
     top: 11px;
@@ -82,9 +82,9 @@ span.search_icon {
     justify-content: end;
     gap: 25px;
 }
-.icons_group_div {
+/* .icons_group_div {
 
-}
+} */
 .header_btn_div {
     width: 30%;
     text-align: center;
@@ -128,9 +128,9 @@ span.search_icon {
     opacity: 0.7;
     transition: all ease-in-out 0.5s;
 }
-.header_username_div {
+/* .header_username_div {
 
-}
+} */
 .hud_user_info {
     display: flex;
     flex-wrap: wrap;
