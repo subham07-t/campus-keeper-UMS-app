@@ -8,4 +8,5 @@ import { appRouter } from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <RouterProvider router={appRouter} />
+  // All updated with main
 );
