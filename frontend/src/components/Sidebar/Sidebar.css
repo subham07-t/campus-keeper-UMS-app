@@ -1,9 +1,38 @@
-.sidebar__div{
-    background-color: red;
+.sidebar__div {
+    background-color: var(--theme-color);
     width: 18%;
-    height: 85vh;
+    background: #000428;
+    background: -webkit-linear-gradient(to top, #004e92, #000428);
+    background: linear-gradient(to top, #004e92, #000428);
 }
+.sidebar_menulist_wrapper {
+    padding: 10px 15px;
+}
+.sidebar_menu_links {
+    text-decoration: none;
+    color: var(--color-white);
+    font-size: 17px;
+    margin-bottom: 18px;
+    display: block;
+    padding: 10px 0px 10px 14px;
+    border-radius: 10px;
+    font-family: var(--font-alt);
+    color: #fff;
+}
+.sidebar_menu_links:hover{
+    background-color: var(--bg-color);
+}
+.sidebar_menu_links:focus{
+    background-color: var(--bg-color);
 
-.h1{
-    color: black;
+}
+/* .sidebar_menu_links.active{
+    background-color: var(--bg-color);
+
+} */
+.sidebar_ml {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-alt);
 }

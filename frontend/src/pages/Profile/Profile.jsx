@@ -4,13 +4,16 @@ const Profile = () => {
   // const [first, setfirst] = useState("");
   //import.meta.env.VITE_PRODUCTION_URL
   const test = async () => {
-    const res = await fetch("https://campus-keeper-server.vercel.app", {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      "https://campus-keeper-server-git-be-testpreview-subham07-t.vercel.app/",
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const url = res.url;
     window.location.replace(url);
     // <Navigate to={url} />;

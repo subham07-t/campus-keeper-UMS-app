@@ -1,5 +1,7 @@
-.student__main-div{
+.student__main-div {
     background-color: var(--theme-color);
-    width: 80%;
+    /* width: 81%; */
     padding: 20px;
+    background-color: #fff;
+    /* box-shadow: 0px 0px 6px 6px rgb(0 0 0 / 27%); */
 }

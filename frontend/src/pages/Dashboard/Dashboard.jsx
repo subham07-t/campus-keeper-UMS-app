@@ -7,13 +7,15 @@ import Students from "../Students";
 const Dashboard = () => {
   return (
     <>
-      <Header />
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
+      {/* <Header /> */}
+      <div style={{ display: "flex", justifyContent: "space-between", height:"100vh" }}>
         <Sidebar />
-        <Outlet />
-        {/* <Students /> */}
-        {/* <Faculties />
-        <Profile /> */}
+   
+
+        <div style={{width:"81.5%"}}>
+          <Header />
+          <Outlet />
+        </div>
       </div>
     </>
   );

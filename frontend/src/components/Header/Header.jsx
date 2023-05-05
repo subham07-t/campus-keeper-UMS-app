@@ -20,9 +20,9 @@ const Header = () => {
           <div className="header_container">
             <div className="header_items_wrapper">
 
-              <div className="header_items one">
+              {/* <div className="header_items one">
                   <a href="#" className='logo'>UMS</a>
-              </div>
+              </div> */}
 
               <div className="header_items two">
                   <div className='input_wrapper'>
@@ -40,7 +40,6 @@ const Header = () => {
                     <div className='icons_group_div'>
                       <div className='icons_wrappers'>
                        
-                        <a href="#"><FaEnvelope className='other_icons'/></a>
                         <a href="#"><IoNotifications className='other_icons'/></a>
                       </div>
                     </div>
