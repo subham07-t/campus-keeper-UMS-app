@@ -33,17 +33,4 @@ Start the Project on browser
 
 `BE/feat/branch-name`,`BE/fix/branch-name`,`BE/test/branch-name`
 
-## Commit naming convention for better practice.
 
-`FE:changes`,
-`FE[feat]:changes`,
-`FE[fix]:changes`,
-`FE[style]:changes`
-
-`BE:changes`,
-`BE[feat]:changes`,
-`BE[fix]:changes`,
-
-### For read .md file in your vs code.
-
-`ctrl+shift+v`
