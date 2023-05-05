@@ -16,48 +16,53 @@
     top: 50%;
     transform: translateY(-54%);
 }
-
+.login_cardwrap {
+    width: 70%;
+    margin: 0% 30% auto;
+}
 .login__heading {
-    text-align: center;
     text-transform: uppercase;
     letter-spacing: 5px;
-    color: var(--color-white);
-    /* margin-bottom: 20px; */
-    margin-left: 10%;
+    color: var(--bg-color);
 }
 .input__div {
     width: 100%;
-    text-align: center;
     color: var(--color-white);
-    margin-left: 6%;
+
 }
-.input__field{
-    width: 70%;
+.input__field {
+    width: 100%;
     height: 40px;
     border-radius: 5px;
-    border: none;
-    background-color: #6995c2;
+    border: 2px solid #becfef;
+    background-color: transparent;
     outline: none;
     padding: 10px;
     font-weight: bold;
     color: var(--color-white);
     letter-spacing: 0.9px;
-    margin-top: 30px;
+    color: var(--theme-color);
+}
+.input__field:focus{
+    background-color: #f5f7f9;
 }
 
 input::placeholder {
     font-weight: bold;
-    color: var(--color-white);
+    color: var(--theme-color);
     letter-spacing: 0.9px;
 }
-
+p.forgot__pass-text {
+    margin: 0;
+    color: var(--bg-color);
+}
 .forgot__pass-text:hover{
     cursor: pointer;
     color: var(--light-blue);
 }
 
-.login__btn{
-    width: 70%;
+.login__btn {
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 5px;
@@ -74,16 +79,30 @@ input::placeholder {
     opacity: 0.9;
     transition: 0.3s ease-out;
 }
-p.forgot__pass-text {
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
 
 .error_msg{
     color: var(--color-error);
     font-size: 12px;
     margin-top: 3px;
 }
-.inputdiv_sub1 , .inputdiv_sub2{
+/* .inputdiv_sub1 , .inputdiv_sub2{
     height: 94px;
+} */
+.inputdiv_sub1 {
+    height: 86px;
+    margin-top: 10px;
+}
+.inputdiv_sub2 {
+    margin: 10px 0px 10px 0px;
+    text-align: center;
+}
+.login_label {
+    font-weight: bold;
+    color: var(--theme-color);
+    letter-spacing: 0.9px;
+    display: block;
+    margin-bottom: 5px;
+}
+.login__heading_container {
+    margin-bottom: 25px;
 }

@@ -7,13 +7,23 @@
     justify-content: center;
     align-items: center;
 } */
-
+.welcome_content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: justify;
+    padding: 38% 20px;
+    border-radius: 10px;
+    background: #000428;
+    background: -webkit-linear-gradient(to right, #004e92, #000428);
+    background: linear-gradient(to left, #004e92, #000428);
+}
 .welcome__div {
     display: inline-block;
     width: 50%;
     height: 100vh;
 }
-.welcome_content {
+/* .welcome_content {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -21,7 +31,7 @@
     background-color: var(--theme-color);
     padding: 30% 20px;
     border-radius: 23px;
-}
+} */
 .welcome__heading{
     color: var(--light-blue);
     font-size: 50px;

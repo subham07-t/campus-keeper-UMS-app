@@ -1,12 +1,15 @@
-.student__main-div{
+.student__main-div {
     background-color: var(--theme-color);
-    width: 80%;
+    /* width: 81%; */
     padding: 20px;
+    background-color: #fff;
+    box-shadow: -6px -13px 14px -1px rgb(0 0 0 / 24%);
+    height: calc(100% - 90px);
 }
 
-.create__student-h1{
+.create__student-h1 {
     text-align: center;
-    color: var(--color-white);
+    color: #001e3c;
     letter-spacing: 1.5px;
     margin-bottom: 20px;
 }

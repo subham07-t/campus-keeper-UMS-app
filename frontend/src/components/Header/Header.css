@@ -1,15 +1,15 @@
 
-
-
 .header_section {
-    background-color: var(--theme-color);
+    background: #000428;
+    background: -webkit-linear-gradient(to right, #004e92, #000428);
+    background: linear-gradient(to left, #004e92, #000428);
     height: 80px;
     width: 100%;
     color: var(--color-white);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 .header_container {
-    width: 90%;
+    width: 95%;
     margin: auto;
 }
 .header_items_wrapper {
@@ -17,6 +17,7 @@
     flex-wrap: wrap;
     height: 80px;
     align-items: center;
+    justify-content: space-between;
 }
 .header_items.one {
     width: 15%;
@@ -38,7 +39,7 @@ a.logo {
 .input_wrapper {
     position: relative;
     width: 75%;
-    margin: auto;
+    margin: 0 0 auto;
 }
 .search_input {
     width: 100%;

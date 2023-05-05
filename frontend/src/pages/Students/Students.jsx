@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
+import Header from "../../components/Header/Header";
 
 const Students = () => {
   //Student Details States:
@@ -144,6 +145,7 @@ const Students = () => {
         </Button>
       </div>
     </div>
+    
   );
 };
 

@@ -64,12 +64,17 @@ const LoginCard = () => {
   return (
     <div className="login__card">
       <div className="login_card_content">
-        <h1 className="login__heading">Login</h1>
+       <div className="login_cardwrap">
+        <div className="login__heading_container">
+            <h1 className="login__heading">Welcome Back</h1>
+            <p>we are to show your everything</p>
+        </div>
         <div className="input__div">
           <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">Username</label>
             <input
               className="input__field"
-              placeholder="Username"
+              placeholder=""
               value={userName}
               onChange={(e) => {
                 setUserName(e.target.value);
@@ -77,13 +82,16 @@ const LoginCard = () => {
                 setErrCredentials("");
               }}
             />
+ 
 
             {errUserName ? <p className="error_msg">{errUserName}</p> : null}
           </div>
-          <div className="inputdiv_sub2">
+          <div className="inputdiv_sub1">
+          <label htmlFor="" className="login_label">Password</label>
+
             <input
               className="input__field"
-              placeholder="Password"
+              placeholder=""
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -92,18 +100,23 @@ const LoginCard = () => {
               }}
             />
 
+
             {errPassword ? <p className="error_msg">{errPassword}</p> : null}
           </div>
-          <p className="forgot__pass-text">Forgot Password?</p>
           <div className="inputdiv_sub2">
+            <p className="forgot__pass-text">Forgot Password?</p>
+          </div>
+          <div className="inputdiv_sub1">
             <button className="login__btn" onClick={navigateToDashboard}>
               Login
             </button>
+
             {errCredentials ? (
               <p className="error_msg">{errCredentials}</p>
             ) : null}
           </div>
         </div>
+       </div>
       </div>
     </div>
   );

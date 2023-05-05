@@ -27,4 +27,6 @@
 }
 body{
   background-color: var(--bg-color);
+  background-color: #fff;
+  
 }
