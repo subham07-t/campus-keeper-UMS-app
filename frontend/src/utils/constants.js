@@ -1,8 +1,8 @@
 export const sidebarData = [
   {
     id: 1,
-    component: "Profile",
-    url: "profile",
+    component: "Users",
+    url: "users",
   },
   {
     id: 2,
@@ -21,6 +21,11 @@ export const sidebarData = [
   },
   {
     id: 5,
+    component: "Profile",
+    url: "profile",
+  },
+  {
+    id: 6,
     component: "Logout",
     url: "logout",
   },
