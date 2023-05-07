@@ -28,5 +28,13 @@
 .sub__div-three{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.inputFields{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }

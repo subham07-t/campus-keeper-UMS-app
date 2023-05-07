@@ -1,0 +1,9 @@
+.main-div{
+    padding: 20px;
+}
+
+.buttons__div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

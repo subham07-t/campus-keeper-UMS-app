@@ -1,8 +1,8 @@
 export const sidebarData = [
   {
     id: 1,
-    component: "Users",
-    url: "users",
+    component: "Analytics",
+    url: "home",
   },
   {
     id: 2,

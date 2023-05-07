@@ -9,7 +9,6 @@ const InputField = ({
   type,
   inputHeight,
 }) => {
-  //   console.log(style);
   return (
     <div className="inputdiv_sub1" style={style}>
       <label htmlFor="" className="login_label">
@@ -22,7 +21,7 @@ const InputField = ({
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
-          //   setErrValue("");
+          setErrValue("");
           //   setErrCredentials("");
         }}
         type={type}

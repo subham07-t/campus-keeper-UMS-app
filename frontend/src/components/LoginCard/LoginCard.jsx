@@ -48,7 +48,7 @@ const LoginCard = () => {
     }
     if (result.msg === "success, This admin07@mail.com has been logged in") {
       localStorage.setItem("user-info", JSON.stringify(result.username));
-      navigate("./dashboard/users");
+      navigate("./dashboard/home");
     }
   };
 

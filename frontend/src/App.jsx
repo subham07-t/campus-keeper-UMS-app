@@ -9,8 +9,7 @@ import RouteError from "./components/RouteError";
 import Profile from "./pages/Profile/Profile";
 import Students from "./pages/Students/Students";
 import Faculties from "./pages/Faculties/Faculties";
-import Body from "./pages/Body/Body";
-import UserTable from "./components/UserTable/UserTable";
+import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
   return (
@@ -43,22 +42,8 @@ export const appRouter = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "users",
-        element: <Body />,
-        children: [
-          {
-            path: "addStudents",
-            element: <Students />,
-          },
-          {
-            path: "addFaculties",
-            element: <Faculties />,
-          },
-          {
-            path: "users",
-            element: <UserTable />,
-          },
-        ],
+        path: "home",
+        element: <HomePage />,
       },
     ],
   },
