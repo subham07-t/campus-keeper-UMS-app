@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "test": "set NODE_ENV=production"
   },
   "config": {
     "commitizen": {

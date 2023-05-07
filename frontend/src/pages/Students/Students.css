@@ -1,21 +1,21 @@
 .student__main-div {
-    background-color: var(--theme-color);
+    /* background-color: var(--theme-color); */
     /* width: 81%; */
     padding: 20px;
     background-color: #fff;
-    /* box-shadow: 0px 0px 6px 6px rgb(0 0 0 / 27%); */
+    box-shadow: 0px 0px 6px 6px rgb(0 0 0 / 27%);
 }
 .create__student-h1 {
     text-align: center;
     color: #001e3c;
     letter-spacing: 1.5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .sub__div-one{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 30px;
+    /* margin-bottom: 20px; */
 }
 
 .sub__div-two{
@@ -28,54 +28,5 @@
 .sub__div-three{
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
 }
-
-
-
-/* Material UI Text-Input Styles */
-
-.sub__div-two .MuiTextField-root{
-    width: 45%;  
-}
-
-.sub__div-one .MuiInputLabel-root {
-    color: var(--color-btn);
-}
-
-.sub__div-one .MuiFilledInput-input {
-    color: var(--color-white);
-}
-
-.sub__div-one .MuiTextField-root {
-    width: 30%;
-}
-
-.sub__div-one .MuiFormControl-root{
-    width: 30%;
-}
-
-.sub__div-two .MuiInputLabel-root{
-    color: var(--color-btn);
-}
-
-.sub__div-two .MuiFilledInput-input{
-    color: var(--color-white);
-}
-
-.sub__div-two .MuiFilledInput-root{
-    height: 12vh;
-}
-
-.sub__div-two .MuiFilledInput-input{
-    color: var(--color-btn);
-}
-
-.sub__div-three .MuiButton-root{
-    background-color: #03C03C;
-    width: 140px;
-}
-
-.sub__div-two .MuiInputBase-inputMultiline{
-    color: var(--color-white);
-} 

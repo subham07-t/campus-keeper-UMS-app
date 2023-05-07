@@ -8,11 +8,16 @@ const Dashboard = () => {
   return (
     <>
       {/* <Header /> */}
-      <div style={{ display: "flex", justifyContent: "space-between", height:"100vh" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          height: "100vh",
+        }}
+      >
         <Sidebar />
-   
 
-        <div style={{width:"81.5%"}}>
+        <div style={{ width: "81.5%" }}>
           <Header />
           <Outlet />
         </div>
