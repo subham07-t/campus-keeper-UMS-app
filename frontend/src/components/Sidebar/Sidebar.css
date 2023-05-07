@@ -1,9 +1,7 @@
 .sidebar__div {
     background-color: var(--theme-color);
-    width: 18%;
-    background: #000428;
-    background: -webkit-linear-gradient(to top, #004e92, #000428);
-    background: linear-gradient(to top, #004e92, #000428);
+    width: 25%;
+    background-color: var(--bg-color);
 }
 .sidebar_menulist_wrapper {
     padding: 10px 15px;
@@ -20,10 +18,10 @@
     color: #fff;
 }
 .sidebar_menu_links:hover{
-    background-color: var(--bg-color);
+    background-color: var(--hover);
 }
 .sidebar_menu_links:focus{
-    background-color: var(--bg-color);
+    background-color: var(--hover);
 
 }
 /* .sidebar_menu_links.active{

@@ -11,13 +11,12 @@ const Dashboard = () => {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
           height: "100vh",
         }}
       >
         <Sidebar />
 
-        <div style={{ width: "81.5%" }}>
+        <div style={{ width: "100%" }}>
           <Header />
           <Outlet />
         </div>

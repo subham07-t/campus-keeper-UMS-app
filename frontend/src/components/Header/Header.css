@@ -1,16 +1,12 @@
 
 .header_section {
-    background: #000428;
-    background: -webkit-linear-gradient(to right, #004e92, #000428);
-    background: linear-gradient(to left, #004e92, #000428);
+    background-color: var(--bg-color);
     height: 80px;
     width: 100%;
     color: var(--color-white);
-    margin-bottom: 6px;
-    box-shadow: 0px 0px 6px 6px rgb(0 0 0 / 27%);
 }
 .header_container {
-    width: 95%;
+    width: 97%;
     margin: auto;
 }
 .header_items_wrapper {

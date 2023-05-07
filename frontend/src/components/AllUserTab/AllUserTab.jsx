@@ -23,8 +23,13 @@ const AllUserTab = () => {
   return (
     <div>
       <h1>User Table</h1>
-      {userData.map((data) => {
-        return <p key={data._id}>{data.firstName}</p>;
+      {userData.map((data, index) => {
+        const { firstName, lastName, email } = data;
+        return (
+          <p key={data._id}>
+            {index + 1} {firstName} - {lastName} - {email}
+          </p>
+        );
       })}
     </div>
   );

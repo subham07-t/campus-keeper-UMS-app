@@ -7,3 +7,39 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.buttons{
+    padding: 3px 20px 3px 20px;
+    outline: none;
+    border: none;
+    background-color: #157afe;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+.buttons_middle{
+    padding: 3px 20px 3px 20px;
+    outline: none;
+    border: none;
+    background-color: #DCDCDC;
+    border-left: 1px solid #D3D3D3;
+    color: black;
+    cursor: pointer;
+    /* border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px */
+}
+
+.buttons_last{
+    padding: 3px 20px 3px 20px;
+    outline: none;
+    border: none;
+    background-color: #DCDCDC;
+    border-left: 1px solid #D3D3D3;
+    color: black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+
+}
