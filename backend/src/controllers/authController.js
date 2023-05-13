@@ -43,14 +43,20 @@ const register = asyncHandler(async (req, res) => {
   }
 
   await roleDetail.save();
+
   const userObject = {
     firstName,
     lastName,
     email,
     role,
     roleDetails: roleDetail._id,
-    authDetails: authDetail._id,
+    authDetails: authDetail,
   };
+
+  if (role === "admin") {
+    userObject.isAdmin = true;
+  }
+
   const newUser = await User.create(userObject);
 
   if (newUser) {
