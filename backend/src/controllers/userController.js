@@ -76,10 +76,11 @@ const deleteUser = asyncHandler(async (req, res) => {
   res.json(reply);
 });
 
-const createRoleDetail = asyncHandler(async (req, res) => {
+const addRoleDetail = asyncHandler(async (req, res) => {
   const { role, id } = req.params;
   const additionalDetails = req.body;
   const user = await User.findOne({ roleDetails: id }).lean().exec();
+
   const modifiedUpdateDetails = { user: user._id, ...additionalDetails };
 
   let updatedRoleDetail;
@@ -168,7 +169,7 @@ const userController = {
   getUser,
   updateUser,
   deleteUser,
-  createRoleDetail,
+  addRoleDetail,
   updateRoleDetail,
   deleteRoleDetail,
 };

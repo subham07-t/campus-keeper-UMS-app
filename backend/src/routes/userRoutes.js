@@ -9,7 +9,7 @@ router
   .get(userController.getUser)
   .patch(userController.updateUser)
   .delete(userMiddleware.deleteRelatedData, userController.deleteUser);
-router.route("/:role/:id").patch(userController.createRoleDetail);
+router.route("/:role/:id").put(userController.addRoleDetail);
 router
   .route("/:role/:id")
   .patch(userController.updateRoleDetail)
