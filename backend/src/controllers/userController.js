@@ -1,8 +1,6 @@
 import User from "../models/User.js";
-import Student from "../models/Student.js";
-import Faculty from "../models/Faculty.js";
-import Admin from "../models/Admin.js";
 import asyncHandler from "express-async-handler";
+import getModelByRole from "../util/model.js";
 
 const getAllUsers = asyncHandler(async (req, res) => {
   // Get all users from MongoDB but don't return password
@@ -51,6 +49,7 @@ const updateUser = asyncHandler(async (req, res) => {
   if (updatedUser) {
     res.json({ message: `${updatedUser.email} updated` });
   } else {
+    res.status(400).json({ message: "Failed to update user" });
   }
 });
 
@@ -83,32 +82,12 @@ const addRoleDetail = asyncHandler(async (req, res) => {
 
   const modifiedUpdateDetails = { user: user._id, ...additionalDetails };
 
-  let updatedRoleDetail;
-  switch (role) {
-    case "student":
-      updatedRoleDetail = await Student.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    case "admin":
-      updatedRoleDetail = await Admin.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    case "faculty":
-      updatedRoleDetail = await Faculty.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    default:
-      return res.status(400).json({ error: "Invalid role" });
-  }
+  const userModel = getModelByRole(role);
+  let updatedRoleDetail = await userModel.findByIdAndUpdate(
+    id,
+    { $set: modifiedUpdateDetails },
+    { new: true }
+  );
 
   if (!updatedRoleDetail) {
     return res.status(404).json({ error: "Role detail not found" });
@@ -120,21 +99,9 @@ const addRoleDetail = asyncHandler(async (req, res) => {
 const getAllDetail = asyncHandler(async (req, res) => {
   const { role } = req.params;
 
-  let roleDetails;
+  const userModel = getModelByRole(role);
 
-  switch (role) {
-    case "admin":
-      roleDetails = await Admin.find().select("-user").lean().exec();
-      break;
-    case "faculty":
-      roleDetails = await Faculty.find().select("-user").lean().exec();
-      break;
-    case "student":
-      roleDetails = await Student.find().select("-user").lean().exec();
-      break;
-    default:
-      return res.status(400).json({ message: "Invalid role" });
-  }
+  const roleDetails = await userModel.find().select("-user").lean().exec();
 
   if (!roleDetails) {
     return res.status(400).json({ message: "No Details exist" });
@@ -146,21 +113,9 @@ const getAllDetail = asyncHandler(async (req, res) => {
 const getDetail = asyncHandler(async (req, res) => {
   const { role, id } = req.params;
 
-  let roleDetail;
+  const userModel = getModelByRole(role);
 
-  switch (role) {
-    case "admin":
-      roleDetail = await Admin.findById(id).lean().exec();
-      break;
-    case "faculty":
-      roleDetail = await Faculty.findById(id).lean().exec();
-      break;
-    case "student":
-      roleDetail = await Student.findById(id).lean().exec();
-      break;
-    default:
-      return res.status(400).json({ message: "Invalid role" });
-  }
+  const roleDetail = await userModel.findById(id).lean().exec();
 
   if (!roleDetail) {
     return res.status(400).json({ message: "No Detail exist" });
@@ -172,28 +127,10 @@ const getDetail = asyncHandler(async (req, res) => {
 const updateRoleDetail = asyncHandler(async (req, res) => {
   const { id, role } = req.params;
   const updateDetails = req.body;
-
-  let updatedRole;
-  switch (role) {
-    case "student":
-      updatedRole = await Student.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    case "faculty":
-      updatedRole = await Faculty.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    case "admin":
-      updatedRole = await Admin.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    default:
-      return res.status(400).json({ message: "Invalid role" });
-  }
-
+  const userModel = getModelByRole(role);
+  let updatedRole = await userModel.findByIdAndUpdate(id, updateDetails, {
+    new: true,
+  });
   res.json({ message: `${updatedRole.user} updated` });
 });
 

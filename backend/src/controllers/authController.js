@@ -1,12 +1,8 @@
 import Auth from "../models/Auth.js";
 import User from "../models/User.js";
-import Student from "../models/Student.js";
-import Faculty from "../models/Faculty.js";
-import Admin from "../models/Admin.js";
 import bcrypt from "bcrypt";
 import asyncHandler from "express-async-handler";
-
-// const CryptoJS = require("crypto-js");
+import getModelByRole from "../util/model.js";
 // const jwt = require("jsonwebtoken");
 
 const register = asyncHandler(async (req, res) => {
@@ -21,26 +17,13 @@ const register = asyncHandler(async (req, res) => {
     return res.status(409).json({ message: "Email already exist" });
   }
 
-  // const hashedPwd = CryptoJS.AES.encrypt(password, process.env.PASSWORD_SECRET).toString()
   const hashedPwd = await bcrypt.hash(password, 10);
   const authDetail = await Auth.create({
     password: hashedPwd,
   });
 
-  let roleDetail;
-  switch (role) {
-    case "student":
-      roleDetail = new Student();
-      break;
-    case "faculty":
-      roleDetail = new Faculty();
-      break;
-    case "admin":
-      roleDetail = new Admin();
-      break;
-    default:
-      throw new Error("Invalid Role");
-  }
+  const userModel = getModelByRole(role);
+  let roleDetail = new userModel();
 
   await roleDetail.save();
 
@@ -67,21 +50,6 @@ const register = asyncHandler(async (req, res) => {
   }
 });
 
-// const validPassword = (passwordToCheck, password) => {
-
-//     const hashedPassword = CryptoJS.AES.decrypt(
-//         password,
-//         process.env.PASSWORD_SECRET
-//     );
-//     const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-//     if (originalPassword === passwordToCheck) {
-//         return true;
-//     }
-
-//     return false;
-
-// }
-
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -93,7 +61,6 @@ const login = asyncHandler(async (req, res) => {
   if (!user) {
     res.status(401).json("User not found");
   } else {
-    // const isMatch = validPassword(password, user.authDetails.password);
     const isMatch = await bcrypt.compare(password, user.authDetails.password);
 
     if (isMatch) {

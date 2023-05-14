@@ -1,8 +1,6 @@
 import User from "../models/User.js";
 import Auth from "../models/Auth.js";
-import Student from "../models/Student.js";
-import Faculty from "../models/Faculty.js";
-import Admin from "../models/Admin.js";
+import getModelByRole from "../util/model.js";
 
 const deleteRelatedData = async (req, res, next) => {
   const userId = req.params.id;
@@ -13,20 +11,8 @@ const deleteRelatedData = async (req, res, next) => {
   } else {
     const authDetail = await Auth.findOne(user.authDetails).exec();
 
-    let roleDetail;
-    switch (user.role) {
-      case "student":
-        roleDetail = await Student.findOne(user.roleDetails).exec();
-        break;
-      case "faculty":
-        roleDetail = await Faculty.findOne(user.roleDetails).exec();
-        break;
-      case "admin":
-        roleDetail = await Admin.findOne(user.roleDetails).exec();
-        break;
-      default:
-        return res.status(400).json({ message: "Invalid role" });
-    }
+    const userModel = getModelByRole(user.role);
+    let roleDetail = await userModel.findOne(user.roleDetails).exec();
 
     // Delete Auth Detail
     if (authDetail) {
