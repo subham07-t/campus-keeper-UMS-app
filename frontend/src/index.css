@@ -3,17 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap');
 
 :root {
-  /* --font-base: 'Cormorant Upright', serif; */
-  /* --font-alt: 'Open Sans', sans-serif; */
   --font-alt: 'Poppins', sans-serif;
   --font-base:: 'Roboto', sans-serif;
 
   --bg-color:  #0C2340;
-  --hover: #132257;
-  --light-blue: #0068d1;
-  --color-btn: #3399ff;
+  --hover: #3e68f0;
+  --bg-blue:#4153ef;
   --color-white: #ffffff;
   --color-error: red;
+  --bg-gray : #f5f7f9;
 }
 
 
@@ -23,10 +21,7 @@
   margin: 0;
   scroll-behavior: smooth;
   font-family: var(--font-alt);
-  /* background-color: var(--bg-color); */
 }
 body{
-  /* background-color: var(--bg-color); */
   background-color: #fff;
-  
 }

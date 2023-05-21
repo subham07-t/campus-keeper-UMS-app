@@ -1,7 +1,7 @@
 import "./Students.css";
 import React from "react";
 import Button from "@mui/material/Button";
-import InputField from "../../components/InputField";
+
 import { useAddStudent } from "../../hooks/useAddStudent";
 
 const Students = () => {
@@ -10,7 +10,7 @@ const Students = () => {
   return (
     <div className="student__main-div">
       <h1 className="create__student-h1">Add Student</h1>
-      <div className="inputFields">
+      {/* <div className="inputFields">
         {inputFields?.map((inputs) => {
           const {
             id,
@@ -35,7 +35,7 @@ const Students = () => {
             />
           );
         })}
-      </div>
+      </div> */}
 
       <div className="sub__div-three">
         <Button variant="contained" color="success" onClick={addStudent}>

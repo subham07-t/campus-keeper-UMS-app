@@ -2,13 +2,12 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { sidebarData } from "../../utils/constants";
 
-//Design this sidebar according to template provided...
-// Tesing for this branch
-
 const Sidebar = () => {
   return (
     <div className="sidebar__div">
-      {/* <h1 className="h1">Sidebar</h1> */}
+      <div className="headText_div">
+        <h1 className="sidebar_heading">UMS</h1>
+      </div>
       <ul className="sidebar_menulist_wrapper">
         {sidebarData.map((data) => {
           return (

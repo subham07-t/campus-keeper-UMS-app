@@ -1,7 +1,6 @@
 import "./LoginCard.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import InputField from "../InputField/InputField";
 
 const LoginCard = () => {
   const navigate = useNavigate();
@@ -48,8 +47,9 @@ const LoginCard = () => {
     }
     if (result.msg === "success, This admin07@mail.com has been logged in") {
       localStorage.setItem("user-info", JSON.stringify(result.username));
-      navigate("./dashboard/home");
+      // navigate("./dashboard/home");
     }
+    navigate("./dashboard/home");
   };
 
   console.log(userName);
@@ -57,79 +57,61 @@ const LoginCard = () => {
 
   return (
     <div className="login__card">
-      <div className="login_card_content">
-        <div className="login_cardwrap">
-          <div className="login__heading_container">
-            <h1 className="login__heading">Welcome Back</h1>
-            <p>we are to show your everything</p>
+      <div className="input__div">
+        <div className="headText_div">
+          <div style={{ width: "70%" }}>
+            <h1 style={{ textAlign: "center" }}>Welcome Back!</h1>
+            <p style={{ textAlign: "center", fontSize: "12px" }}>
+              Please enter your credentials to access your account.
+            </p>
           </div>
-          <div className="input__div">
-            {/* <div className="inputdiv_sub1">
-              <label htmlFor="" className="login_label">
-                Username
-              </label>
-              <input
-                className="input__field"
-                placeholder=""
-                value={userName}
-                onChange={(e) => {
-                  setUserName(e.target.value);
-                  setErrUserName("");
-                  setErrCredentials("");
-                }}
-              />
+        </div>
 
-              {errUserName ? <p className="error_msg">{errUserName}</p> : null}
-            </div> */}
-
-            <InputField
-              label="Username"
-              value={userName}
-              setValue={setUserName}
-              setErrValue={setErrUserName}
-              setErrCredentials={setErrCredentials}
-              errValue={errUserName}
-            />
-            <InputField
-              label="Password"
-              value={password}
-              setValue={setPassword}
-              setErrValue={setErrPassword}
-              setErrCredentials={setErrCredentials}
-              errValue={errPassword}
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Username
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              onChange={(e) => {
+                setUserName(e.target.value);
+                setErrUserName("");
+              }}
             />
 
-            {/* <div className="inputdiv_sub1">
-              <label htmlFor="" className="login_label">
-                Password
-              </label>
-
-              <input
-                className="input__field"
-                placeholder=""
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setErrPassword("");
-                  setErrCredentials("");
-                }}
-              />
-
-              {errPassword ? <p className="error_msg">{errPassword}</p> : null}
-            </div> */}
-            <div className="inputdiv_sub2">
-              <p className="forgot__pass-text">Forgot Password?</p>
-            </div>
-            <div className="inputdiv_sub1">
-              <button className="login__btn" onClick={navigateToDashboard}>
-                Login
-              </button>
-
-              {errCredentials ? (
-                <p className="error_msg">{errCredentials}</p>
-              ) : null}
-            </div>
+            {errUserName ? <p className="error_msg">{errUserName}</p> : null}
           </div>
+        </div>
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="input__field"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setErrPassword("");
+              }}
+            />
+
+            {errPassword ? <p className="error_msg">{errPassword}</p> : null}
+          </div>
+        </div>
+        <div className="inputdiv_sub2">
+          <p className="forgot__pass-text">Forgot Password?</p>
+        </div>
+        <div className="username_div">
+          <button className="login__btn" onClick={navigateToDashboard}>
+            Login
+          </button>
+
+          {errCredentials ? (
+            <p className="error_msg">{errCredentials}</p>
+          ) : null}
         </div>
       </div>
     </div>

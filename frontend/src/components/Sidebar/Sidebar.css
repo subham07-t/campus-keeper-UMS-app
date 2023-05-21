@@ -1,7 +1,6 @@
 .sidebar__div {
-    background-color: var(--theme-color);
     width: 25%;
-    background-color: var(--bg-color);
+    background-color: var(--bg-blue);
 }
 .sidebar_menulist_wrapper {
     padding: 10px 15px;
@@ -15,7 +14,7 @@
     padding: 10px 0px 10px 14px;
     border-radius: 10px;
     font-family: var(--font-alt);
-    color: #fff;
+    color: var(--color-white);
 }
 .sidebar_menu_links:hover{
     background-color: var(--hover);
@@ -33,4 +32,15 @@
     margin: 0;
     padding: 0;
     font-family: var(--font-alt);
+}
+
+
+.sidebar_heading{
+    color: var(--color-white);
+    letter-spacing: 2px;
+}
+
+.headText_div{
+    background-color: var(--hover);
+    padding: 5px;
 }

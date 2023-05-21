@@ -1,12 +1,15 @@
 import "./WelcomeCard.css";
+import Dashboard from "../../assets/dash.png";
 
 const WelcomeCard = () => {
   return (
     <div className="welcome__div">
-      <div className="welcome_content">
-        <h1 className="welcome__heading">Manage</h1>
-        <h2 className="welcome__para">Your all task</h2>
-        <h2 className="welcome__para">Using our system</h2>
+      <div>
+        <h3 className="head">UMS Application</h3>
+        <p className="para">The simplest way to manage your workforce</p>
+        <div className="img_div">
+          <img src={Dashboard} />
+        </div>
       </div>
     </div>
   );

@@ -1,37 +1,23 @@
-/* .login__card {
-    color: var(--color-white);
-    width: 48%;
-    border-radius: 10px;
-    padding: 70px;
-} */
+
 .login__card {
-    display: inline-block;
     width: 50%;
-    vertical-align: top;
-    height: 100vh;
+    height: 97vh;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 5px 10px 11px 7px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.login_card_content {
-    position: relative;
-    top: 50%;
-    transform: translateY(-54%);
-}
-.login_cardwrap {
-    width: 70%;
-    margin: 0% 30% auto;
-}
-.login__heading {
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    color: var(--bg-color);
-}
 .input__div {
     width: 100%;
-    color: var(--color-white);
+    padding: 20px;
 
 }
 .input__field {
-    width: 100%;
+    width: 50%;
     height: 40px;
     border-radius: 5px;
     border: 2px solid #becfef;
@@ -62,12 +48,12 @@ p.forgot__pass-text {
 }
 
 .login__btn {
-    width: 100%;
+    width: 70%;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 5px;
     border: none;
-    background-color: var(--color-btn);
+    background-color: var(--bg-blue);
     color: var(--color-white);
     font-weight: 600;
     letter-spacing: 0.9px;
@@ -85,15 +71,13 @@ p.forgot__pass-text {
     font-size: 12px;
     margin-top: 3px;
 }
-/* .inputdiv_sub1 , .inputdiv_sub2{
-    height: 94px;
-} */
+
 .inputdiv_sub1 {
     height: 86px;
     margin-top: 10px;
 }
 .inputdiv_sub2 {
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px 20px 0px;
     text-align: center;
 }
 .login_label {
@@ -103,6 +87,41 @@ p.forgot__pass-text {
     display: block;
     margin-bottom: 5px;
 }
-.login__heading_container {
-    margin-bottom: 25px;
+
+
+
+.username_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
+
+
+.input__field {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #becfef;
+    background-color: transparent;
+    outline: none;
+    padding: 10px;
+    font-weight: bold;
+    color: var(--color-white);
+    letter-spacing: 0.9px;
+    color: var(--theme-color);
+}
+
+.inputdiv_sub1 {
+    height: 80px;
+    width: 70%;
+}
+
+.headText_div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
