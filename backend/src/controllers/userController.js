@@ -1,8 +1,6 @@
 import User from "../models/User.js";
-import Student from "../models/Student.js";
-import Faculty from "../models/Faculty.js";
-import Admin from "../models/Admin.js";
 import asyncHandler from "express-async-handler";
+import getModelByRole from "../util/model.js";
 
 const getAllUsers = asyncHandler(async (req, res) => {
   // Get all users from MongoDB but don't return password
@@ -16,71 +14,43 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.json(users);
 });
 
-const createRoleDetail = asyncHandler(async (req, res) => {
-  const { role, id } = req.params;
-  const additionalDetails = req.body;
-  const user = await User.findOne({ roleDetails: id }).lean().exec();
-  const modifiedUpdateDetails = { user: user._id, ...additionalDetails };
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).lean().exec();
 
-  let updatedRoleDetail;
-  switch (role) {
-    case "student":
-      updatedRoleDetail = await Student.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    case "admin":
-      updatedRoleDetail = await Admin.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    case "faculty":
-      updatedRoleDetail = await Faculty.findByIdAndUpdate(
-        id,
-        { $set: modifiedUpdateDetails },
-        { new: true }
-      );
-      break;
-    default:
-      return res.status(400).json({ error: "Invalid role" });
+  if (!user) {
+    res.status(404).json({ message: "User not found" });
+  } else {
+    res.status(200).json(user);
   }
-
-  if (!updatedRoleDetail) {
-    return res.status(404).json({ error: "Role detail not found" });
-  }
-
-  res.status(201).json({ message: `New user ${role} created` });
 });
 
-const updateRoleDetail = asyncHandler(async (req, res) => {
-  const { id, role } = req.params;
-  const { updateDetails } = req.body;
+const updateUser = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const updateDetails = req.body;
 
-  switch (role) {
-    case "student":
-      updatedRole = await StudentDetail.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    case "faculty":
-      updatedRole = await FacultyDetail.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    case "admin":
-      updatedRole = await AdminDetail.findByIdAndUpdate(id, updateDetails, {
-        new: true,
-      });
-      break;
-    default:
-      return res.status(400).json({ message: "Invalid role" });
+  const user = await User.findById(id).exec();
+
+  if (!user) {
+    return res.status(400).json({ message: "User not found" });
   }
 
-  res.json({ message: `${updatedRole.user} updated` });
+  if (
+    !(user.role === "admin") &&
+    "isAdmin" in updateDetails &&
+    updateDetails.isAdmin === true
+  ) {
+    res.json({ message: `Can't update isAdmin Status for this user` });
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(id, updateDetails, {
+    new: true,
+  });
+
+  if (updatedUser) {
+    res.json({ message: `${updatedUser.email} updated` });
+  } else {
+    res.status(400).json({ message: "Failed to update user" });
+  }
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
@@ -105,31 +75,73 @@ const deleteUser = asyncHandler(async (req, res) => {
   res.json(reply);
 });
 
-const deleteRoleDetail = asyncHandler(async (req, res) => {
-  const { id, role } = req.params;
+const addRoleDetail = asyncHandler(async (req, res) => {
+  const { role, id } = req.params;
+  const additionalDetails = req.body;
+  const user = await User.findOne({ roleDetails: id }).lean().exec();
 
-  switch (role) {
-    case "student":
-      deletedRole = await StudentDetail.findOneAndDelete(id);
-      break;
-    case "faculty":
-      deletedRole = await FacultyDetail.findByIdAndUpdate(id);
-      break;
-    case "admin":
-      deletedRole = await AdminDetail.findByIdAndUpdate(id);
-      break;
-    default:
-      return res.status(400).json({ message: "Invalid role" });
+  const modifiedUpdateDetails = { user: user._id, ...additionalDetails };
+
+  const userModel = getModelByRole(role);
+  let updatedRoleDetail = await userModel.findByIdAndUpdate(
+    id,
+    { $set: modifiedUpdateDetails },
+    { new: true }
+  );
+
+  if (!updatedRoleDetail) {
+    return res.status(404).json({ error: "Role detail not found" });
   }
 
-  res.json({ message: `${deletedRole.user} deleted` });
+  res.status(201).json({ message: `New user ${role} created` });
+});
+
+const getAllDetail = asyncHandler(async (req, res) => {
+  const { role } = req.params;
+
+  const userModel = getModelByRole(role);
+
+  const roleDetails = await userModel.find().select("-user").lean().exec();
+
+  if (!roleDetails) {
+    return res.status(400).json({ message: "No Details exist" });
+  } else {
+    res.status(200).json(roleDetails);
+  }
+});
+
+const getDetail = asyncHandler(async (req, res) => {
+  const { role, id } = req.params;
+
+  const userModel = getModelByRole(role);
+
+  const roleDetail = await userModel.findById(id).lean().exec();
+
+  if (!roleDetail) {
+    return res.status(400).json({ message: "No Detail exist" });
+  } else {
+    res.status(200).json(roleDetail);
+  }
+});
+
+const updateRoleDetail = asyncHandler(async (req, res) => {
+  const { id, role } = req.params;
+  const updateDetails = req.body;
+  const userModel = getModelByRole(role);
+  let updatedRole = await userModel.findByIdAndUpdate(id, updateDetails, {
+    new: true,
+  });
+  res.json({ message: `${updatedRole.user} updated` });
 });
 
 const userController = {
   getAllUsers,
-  updateRoleDetail,
-  deleteRoleDetail,
+  getUser,
+  updateUser,
   deleteUser,
-  createRoleDetail,
+  getAllDetail,
+  getDetail,
+  addRoleDetail,
+  updateRoleDetail,
 };
 export default userController;
