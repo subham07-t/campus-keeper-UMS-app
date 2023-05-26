@@ -2,9 +2,9 @@
     background-color: var(--theme-color);
     /* width: 81%; */
     padding: 20px;
-    background-color: #fff;
+    /* background-color: #fff;
     box-shadow: -6px -13px 14px -1px rgb(0 0 0 / 24%);
-    height: calc(100% - 90px);
+    height: calc(100% - 90px); */
 }
 
 .create__student-h1 {

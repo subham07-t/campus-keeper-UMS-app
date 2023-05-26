@@ -10,32 +10,80 @@ const Students = () => {
   return (
     <div className="student__main-div">
       <h1 className="create__student-h1">Add Student</h1>
-      {/* <div className="inputFields">
-        {inputFields?.map((inputs) => {
-          const {
-            id,
-            style,
-            label,
-            value,
-            setValue,
-            type,
-            errValue,
-            setErrValue,
-          } = inputs;
-          return (
-            <InputField
-              key={id}
-              style={style}
-              label={label}
-              value={value}
-              setValue={setValue}
-              type={type}
-              errValue={errValue}
-              setErrValue={setErrValue}
+
+      <div className="input_main-div">
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Firstname
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              // onChange={(e) => {
+              //   setUserName(e.target.value);
+              //   setErrUserName("");
+              // }}
             />
-          );
-        })}
-      </div> */}
+
+            {/* {errUserName ? <p className="error_msg">{errUserName}</p> : null} */}
+          </div>
+        </div>
+
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Lastname
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              // onChange={(e) => {
+              //   setUserName(e.target.value);
+              //   setErrUserName("");
+              // }}
+            />
+
+            {/* {errUserName ? <p className="error_msg">{errUserName}</p> : null} */}
+          </div>
+        </div>
+
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Email
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              // onChange={(e) => {
+              //   setUserName(e.target.value);
+              //   setErrUserName("");
+              // }}
+            />
+
+            {/* {errUserName ? <p className="error_msg">{errUserName}</p> : null} */}
+          </div>
+        </div>
+
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Password
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              // onChange={(e) => {
+              //   setUserName(e.target.value);
+              //   setErrUserName("");
+              // }}
+            />
+
+            {/* {errUserName ? <p className="error_msg">{errUserName}</p> : null} */}
+          </div>
+        </div>
+      </div>
 
       <div className="sub__div-three">
         <Button variant="contained" color="success" onClick={addStudent}>

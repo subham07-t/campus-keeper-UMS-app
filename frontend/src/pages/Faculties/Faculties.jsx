@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
+import { useAddStudent } from "../../hooks/useAddStudent";
 
 const Faculties = () => {
   const [age, setAge] = React.useState("");
@@ -13,79 +14,94 @@ const Faculties = () => {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  const { inputFields, addStudent, modal } = useAddStudent();
+
   return (
     <div className="student__main-div">
-      <h1 className="create__student-h1">Add Faculties</h1>
-      <div className="sub__div-one">
-        <TextField id="filled-basic" label="Full Name" variant="filled" />
-        <TextField id="filled-basic" label="Department" variant="filled" />
-        <TextField id="filled-basic" label="Date of Joinning" variant="filled" />
+      <h1 className="create__student-h1">Add Faculty</h1>
+
+      <div className="input_main-div">
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Firstname
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              // onChange={(e) => {
+              //   setUserName(e.target.value);
+              //   setErrUserName("");
+              // }}
+            />
+
+            {/* {errUserName ? <p className="error_msg">{errUserName}</p> : null} */}
+          </div>
+        </div>
+
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Lastname
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              // onChange={(e) => {
+              //   setUserName(e.target.value);
+              //   setErrUserName("");
+              // }}
+            />
+
+            {/* {errUserName ? <p className="error_msg">{errUserName}</p> : null} */}
+          </div>
+        </div>
+
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Email
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              // onChange={(e) => {
+              //   setUserName(e.target.value);
+              //   setErrUserName("");
+              // }}
+            />
+
+            {/* {errUserName ? <p className="error_msg">{errUserName}</p> : null} */}
+          </div>
+        </div>
+
+        <div className="username_div">
+          <div className="inputdiv_sub1">
+            <label htmlFor="" className="login_label">
+              Password
+            </label>
+            <input
+              type="text"
+              className="input__field"
+              // onChange={(e) => {
+              //   setUserName(e.target.value);
+              //   setErrUserName("");
+              // }}
+            />
+
+            {/* {errUserName ? <p className="error_msg">{errUserName}</p> : null} */}
+          </div>
+        </div>
       </div>
-      <div className="sub__div-one">
-        <TextField
-          id="filled-basic"
-          label="ID Number"
-          variant="filled"
-          type="number"
-        />
-        <TextField
-          id="filled-basic"
-          label="Previous Organization"
-          variant="filled"
-          
-        />
-           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-standard-label">Gender</InputLabel>
-          <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
-            value={age}
-            onChange={handleChange}
-            label="Gender"
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Male</MenuItem>
-            <MenuItem value={20}>Female</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-      <div className="sub__div-one">
-      <TextField
-          id="filled-basic"
-          label="Phone Number"
-          variant="filled"
-          type="number"
-        />
-        <TextField
-          id="filled-basic"
-          label="Email"
-          variant="filled"
-          type="email"
-        />
-        <TextField id="filled-basic" label="Password" variant="filled" />
-     
-      </div>
-      <div className="sub__div-two">
-        <TextField
-          id="filled-multiline-static"
-          label="Address"
-          multiline
-          rows={2}
-          variant="filled"
-        />
-        <TextField
-          id="filled-basic"
-          label="Upload Photo"
-          variant="filled"
-          type="file"
-        />
-      </div>
+
       <div className="sub__div-three">
         <Button variant="contained" color="success">
           SUBMIT
         </Button>
+        <p style={{ marginTop: "10px", color: "red" }}>
+          {modal ? "User Already Exits!" : ""}
+        </p>
       </div>
     </div>
   );
